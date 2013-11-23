@@ -11,8 +11,7 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
-        android:text="@string/select"
-        android:textIsSelectable="true"/>
+        android:text="@string/select"/>
  	<TextView
         android:id="@+id/colum2"
         android:layout_width="200dp"
@@ -21,8 +20,7 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
-        android:text="@string/company_name"
-        android:textIsSelectable="true" />
+        android:text="@string/company_name" />
  	
     <LinearLayout
         android:id="@+id/company_header11"
@@ -34,57 +32,49 @@
             android:id="@+id/colum3"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="@string/company_serial"
-            android:textIsSelectable="true" />
+            android:text="@string/company_serial"/>
 
         <TextView
             android:id="@+id/colum4"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="@string/company_area"
-            android:textIsSelectable="true" />
+            android:text="@string/company_area"/>
 
         <TextView
             android:id="@+id/colum5"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/company_address"
-            android:textIsSelectable="true" />
+            android:text="@string/company_address"/>
 
         <TextView
             android:id="@+id/colum6"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="@string/responsor"
-            android:textIsSelectable="true" />
+            android:text="@string/responsor" />
 
         <TextView
             android:id="@+id/colum7"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="@string/phone"
-            android:textIsSelectable="true" />
+            android:text="@string/phone"/>
 
         <TextView
             android:id="@+id/colum8"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="@string/secure_manager"
-            android:textIsSelectable="true" />
+            android:text="@string/secure_manager" />
 
         <TextView
             android:id="@+id/colum9"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="@string/phone"
-            android:textIsSelectable="true" />
+            android:text="@string/phone"/>
 
         <TextView
             android:id="@+id/colum10"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="@string/valid_date"
-            android:textIsSelectable="true" />
+            android:text="@string/valid_date"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -1,12 +1,87 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="license info" />
-
-</LinearLayout>
+        android:orientation="vertical" >
+        <LinearLayout 
+            android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/info_upload"/>
+	        <LinearLayout 
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal">
+	            <Button
+	                android:id="@+id/button_add_local"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="本地文件"/>
+	           <Button
+	                android:id="@+id/button_add_capture"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="拍照"/>
+	           <ImageView 
+	               android:id="@+id/image_preview"
+	               android:layout_width="200dp"
+	               android:layout_height="200dp"
+	               android:contentDescription="预览"/>
+	           <Button
+	                android:id="@+id/button_upload"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="上传"/>
+	        </LinearLayout>
+        </LinearLayout>
+         <LinearLayout 
+            android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/info_uploaded_certi"/>
+	        <ScrollView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content">
+		        <LinearLayout 
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:orientation="horizontal">
+		            
+		           <ImageView 
+		               android:id="@+id/image_uploaded"
+		               android:layout_width="200dp"
+		               android:layout_height="200dp"
+		               android:contentDescription="预览"/>
+		           
+		        </LinearLayout>
+	        </ScrollView>
+        </LinearLayout>
+        <LinearLayout 
+            android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/info_uploaded_files"/>
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="文件1"/>
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="文件2"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

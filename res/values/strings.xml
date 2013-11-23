@@ -41,6 +41,7 @@
     <string name="code">编号</string>
     <string name="rank">等级</string>
     <string name="name">姓名</string>
+    <string name="upload">上传</string>
     
     <!-- company information table header -->
     <string name="select">选择</string>
@@ -84,4 +85,8 @@
 	<string name="info_date_review">评审日期</string>
 	<string name="info_reserves">储量</string>
 	<string name="info_attribute_special">特别属性</string>
+	
+	<string name="info_upload">新证件上传</string>
+	<string name="info_uploaded_certi">已上传证件</string>
+	<string name="info_uploaded_files">已上传相关文档文件</string>
 </resources>
