@@ -59,7 +59,7 @@ public class MainActivity extends FragmentActivity implements TabListener{
 		
 		drawerLayout=(DrawerLayout) findViewById(R.id.drawer_layout);
 		drawerToggle=new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.string.open_drawer, R.string.close_drawer){
-
+			//当drawer打开和关闭时，用于改变actionbar中的菜单选项
 			@Override
 			public void onDrawerClosed(View drawerView) {
 				// TODO Auto-generated method stub
@@ -117,7 +117,7 @@ public class MainActivity extends FragmentActivity implements TabListener{
 		@Override
 		public Fragment getItem(int arg0) {
 			// TODO Auto-generated method stub
-			return FragmentsFactory.getFragment(arg0);
+			return FragmentsFactory.getMainFragment(arg0);
 		}
 
 		@Override
@@ -129,7 +129,7 @@ public class MainActivity extends FragmentActivity implements TabListener{
 		@Override
 		public CharSequence getPageTitle(int position) {
 			// TODO Auto-generated method stub
-			return Commons.PAPER_TITLES[position];
+			return Commons.MAIN_PAPER_TITLES[position];
 		}
 	}
 

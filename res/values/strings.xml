@@ -2,6 +2,19 @@
 <resources>
 
     <string name="app_name">EnforcementSystem</string>
+    
+    <!-- main navigation module -->
+    <string name="info">企业信息</string>
+    <string name="enforcement">现场执法</string>
+    <string name="law">法律法规</string>
+    <string name="user">用户信息</string>
+    
+    <!-- enterprise 's information page navigation module --> 
+    <string name="base_data">基本资料</string>
+    <string name="secure_data">安全资料</string>
+    <string name="license_info">许可信息</string>
+    <string name="record">检查记录</string>
+    <string name="remark">备注</string>
  
     <!-- left drawer -->
     <string name="open_drawer">open drawer</string>
@@ -14,6 +27,21 @@
     <string name="logout">注销</string>
     <string name="about">关于</string>
 
+
+    
+    <!-- common -->
+    <string name="add">增加</string>
+    <string name="delete">删除</string>
+    <string name="edit">编辑</string>
+    <string name="search">查询</string>
+    <string name="save">保存</string>
+    <string name="email">电邮</string>
+    <string name="type">类型</string>
+    <string name="fax">传真</string>
+    <string name="code">编号</string>
+    <string name="rank">等级</string>
+    <string name="name">姓名</string>
+    
     <!-- company information table header -->
     <string name="select">选择</string>
     <string name="company_name">企业名称</string>
@@ -24,10 +52,36 @@
     <string name="secure_manager">安全管理员</string>
     <string name="phone">电话</string>
     <string name="valid_date">有效日期</string>
+    <string name="varity">品种</string>
     
-    <!-- common -->
-    <string name="add">增加</string>
-    <string name="delete">删除</string>
-    <string name="edit">编辑</string>
-    <string name="search">查询</string>
+    
+    <!-- company information detail -->
+    <string name="info_code_organization">组织机构代码</string>
+    <string name="info_num_file">档案编号</string>
+    <string name="info_num_business_license">工商营业执照编号</string>
+	<string name="info_license_secure">安全资格证</string>
+	<string name="info_deliver_date">发证日期</string>
+	<string name="info_shutdown">停业歇业</string>
+	<string name="info_rectify">重点整改企业</string>
+	<string name="info_expend">新扩建企业</string>
+	
+	<string name="info_license_secure_permission">安全许可证</string>
+	<string name="info_range">经营范围</string>
+	<string name="info_certificate_situ">持证情况</string>
+	<string name="info_office_license">发证机关</string>
+	<string name="info_secure_standard">安全生产标准化</string>
+	<string name="info_filing_chemical">非药品类易制毒化学品生产经营备案</string>
+	<string name="info_varity_sort">品种类别</string>
+	<string name="info_flow">主要流向</string>
+	<string name="info_filing_danger">重大危险源备案</string>
+	<string name="info_filing_emergency">应急预案备案</string>
+	<string name="info_name_filing">预案名称</string>
+	<string name="info_num_version">版本号</string>
+	<string name="info_date_filing">备案日期</string>
+	<string name="info_date_evaluate">评估日期</string>
+	<string name="info_date_connect">联网日期</string>
+	<string name="info_date_deliver">发布日期</string>
+	<string name="info_date_review">评审日期</string>
+	<string name="info_reserves">储量</string>
+	<string name="info_attribute_special">特别属性</string>
 </resources>

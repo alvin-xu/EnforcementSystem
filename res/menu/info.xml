@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_info_save"
+        android:orderInCategory="1"
+        android:showAsAction="ifRoom"
+        android:title="@string/save"/>
+    <item
+        android:id="@+id/action_info_sync"
+        android:orderInCategory="2"
+        android:showAsAction="ifRoom"
+        android:title="@string/sync"/>
+</menu>

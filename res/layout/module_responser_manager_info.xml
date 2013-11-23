@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+    <Button
+        android:id="@+id/delete_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/delete"/>
+<TableLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1,3,5" >
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <TextView 
+            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content"
+            android:text="@string/name"/>
+        <EditText 
+            android:id="@+id/info_name"
+            android:inputType="text"/>
+        
+        <TextView 
+            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content"
+            android:text="@string/phone"/>
+        <EditText 
+            android:id="@+id/info_phone"
+            android:inputType="phone"/>
+        
+        <TextView 
+            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content"
+            android:text="@string/email"/>
+        <EditText 
+            android:id="@+id/info_email"
+            android:inputType="textEmailAddress"/>
+       
+    </TableRow>
+	<TableRow 
+	    android:id="@+id/tableRow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        
+	    <TextView 
+	        android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content"
+	        android:text="@string/info_license_secure"/>
+        <EditText 
+            android:id="@+id/info_license_secure"
+            android:inputType="text"/>
+        
+        <TextView 
+            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content"
+            android:text="@string/info_date_deliver"/>
+        <EditText 
+            android:id="@+id/info_date_deliver"
+            android:inputType="date"/>
+        
+        <TextView 
+            android:layout_width="wrap_content" 
+	            android:layout_height="wrap_content"
+            android:text="@string/valid_date"/>
+        <EditText 
+            android:id="@+id/info_date_validate"
+            android:inputType="date"/>
+	</TableRow>
+</TableLayout>
+</LinearLayout>
