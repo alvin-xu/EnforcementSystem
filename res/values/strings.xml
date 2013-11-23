@@ -60,7 +60,7 @@
     <string name="info_num_file">档案编号</string>
     <string name="info_num_business_license">工商营业执照编号</string>
 	<string name="info_license_secure">安全资格证</string>
-	<string name="info_deliver_date">发证日期</string>
+	<string name="info_date_deliver_license">发证日期</string>
 	<string name="info_shutdown">停业歇业</string>
 	<string name="info_rectify">重点整改企业</string>
 	<string name="info_expend">新扩建企业</string>
