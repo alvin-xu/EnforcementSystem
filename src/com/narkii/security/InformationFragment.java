@@ -1,6 +1,7 @@
 package com.narkii.security;
 
 import com.narkii.security.R;
+import com.narkii.security.common.HVListView;
 import com.narkii.security.info.InformationDetailActivity;
 
 import android.content.Intent;
@@ -32,11 +33,12 @@ public class InformationFragment extends Fragment{
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 		
-		companyList=(HVListView) getActivity().findViewById(android.R.id.list);
+//		companyList=(HVListView) getActivity().findViewById(android.R.id.list);
+		companyList=(HVListView) view.findViewById(R.id.company_info_list);
 		companyList.mListHead=(LinearLayout) view.findViewById(R.id.company_header11);
 		companyList.setAdapter(new CompanyDataAdapter());
 		
-		addButton=(Button) view.findViewById(R.id.butto_add);
+		addButton=(Button) view.findViewById(R.id.button_add);
 		addButton.setOnClickListener(new OnClickListener() {
 			
 			@Override

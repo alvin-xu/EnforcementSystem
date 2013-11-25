@@ -1,4 +1,4 @@
-package com.narkii.security;
+package com.narkii.security.common;
 
 import android.content.Context;
 import android.util.AttributeSet;

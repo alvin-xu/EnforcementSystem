@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
+    <!-- 拍照or本地 上传 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,6 +42,8 @@
 	                android:text="上传"/>
 	        </LinearLayout>
         </LinearLayout>
+        
+        <!-- 已上传证件  -->
          <LinearLayout 
             android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
@@ -50,9 +53,13 @@
 	            android:layout_height="wrap_content"
 	            android:text="@string/info_uploaded_certi"/>
 	        <ScrollView 
-	            android:layout_width="wrap_content"
+	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content">
-		        <LinearLayout 
+	           <HorizontalScrollView 
+	                android:layout_width="match_parent"
+	            	android:layout_height="wrap_content">
+		        <LinearLayout
+		            android:id="@+id/linear_images" 
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content"
 		            android:orientation="horizontal">
@@ -61,11 +68,57 @@
 		               android:id="@+id/image_uploaded"
 		               android:layout_width="200dp"
 		               android:layout_height="200dp"
-		               android:contentDescription="预览"/>
-		           
+		               android:contentDescription="预览"
+		               android:src="@drawable/chrysanthemum"/>
+		      
+		           <ImageView 
+		               android:id="@+id/image_uploaded2"
+		               android:layout_width="200dp"
+		               android:layout_height="200dp"
+		               android:contentDescription="预览"
+		               android:src="@drawable/desert"/>
+		           <ImageView 
+		               android:id="@+id/image_uploaded3"
+		               android:layout_width="200dp"
+		               android:layout_height="200dp"
+		               android:contentDescription="预览"
+		               android:src="@drawable/hydrangeas"/>
+		           <ImageView 
+		               android:id="@+id/image_uploaded4"
+		               android:layout_width="200dp"
+		               android:layout_height="200dp"
+		               android:contentDescription="预览"
+		               android:src="@drawable/jellyfish"/>
+		           <ImageView 
+		               android:id="@+id/image_uploaded5"
+		               android:layout_width="200dp"
+		               android:layout_height="200dp"
+		               android:contentDescription="预览"
+		               android:src="@drawable/koala"/>
+		           <ImageView 
+		               android:id="@+id/image_uploaded6"
+		               android:layout_width="200dp"
+		               android:layout_height="200dp"
+		               android:contentDescription="预览"
+		               android:src="@drawable/lighthouse"/>
+		           <ImageView 
+		               android:id="@+id/image_uploaded7"
+		               android:layout_width="200dp"
+		               android:layout_height="200dp"
+		               android:contentDescription="预览"
+		               android:src="@drawable/penguins"/>
+		           <ImageView 
+		               android:id="@+id/image_uploaded8"
+		               android:layout_width="200dp"
+		               android:layout_height="200dp"
+		               android:contentDescription="预览"
+		               android:src="@drawable/tulips"/>
 		        </LinearLayout>
+		        </HorizontalScrollView>
 	        </ScrollView>
         </LinearLayout>
+        
+        <!-- 已上传文件 -->
         <LinearLayout 
             android:layout_width="match_parent"
 	        android:layout_height="wrap_content"

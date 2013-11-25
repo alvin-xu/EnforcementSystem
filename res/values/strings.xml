@@ -19,6 +19,11 @@
     <!-- left drawer -->
     <string name="open_drawer">open drawer</string>
     <string name="close_drawer">close drawer</string>
+    <string name="company_type">企业类型</string>
+    <string name="search_types">分类查询</string>
+    <string name="permission_type">许可类型</string>
+    <string name="key_word">关键字</string>
+    <string name="baidu">百度一下</string>
     
     <!-- actionbar 's action -->
     <string name="review">复查</string>
@@ -42,6 +47,9 @@
     <string name="rank">等级</string>
     <string name="name">姓名</string>
     <string name="upload">上传</string>
+    <string name="cancel">取消</string>
+    <string name="print">打印</string>
+    <string name="time">时间</string>
     
     <!-- company information table header -->
     <string name="select">选择</string>
@@ -89,4 +97,13 @@
 	<string name="info_upload">新证件上传</string>
 	<string name="info_uploaded_certi">已上传证件</string>
 	<string name="info_uploaded_files">已上传相关文档文件</string>
+	
+	<!-- law enforcement -->
+	<string name="enforce_seria">序号</string>
+	<string name="enforce_time_law">执法时间</string>
+	<string name="enforce_form_check">检查形式</string>
+	<string name="enforce_paper">文书</string>
+	<string name="enforce_officer">执法人员</string>
+	<string name="enforce_num_id">证件号</string>
+	
 </resources>
