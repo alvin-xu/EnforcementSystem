@@ -93,17 +93,12 @@
     </TableLayout>
     
 	<include layout="@layout/company_info_header"/>
-	<com.narkii.security.common.HVListView 
+
+	<ListView 
 	    android:id="@+id/company_info_list"
-	    android:fastScrollEnabled="true"
-		android:fadingEdgeLength="0.0sp"
-		android:drawSelectorOnTop="false"
-		android:cacheColorHint="@null" 
-		android:dividerHeight="1.0dip"
-		android:layout_width="1150dp"
-		android:layout_height="0dp"
-		android:layout_weight="1">
-	</com.narkii.security.common.HVListView>
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1"></ListView>
 	
 	<LinearLayout 
 	    android:layout_width="fill_parent"

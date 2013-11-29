@@ -1,9 +1,10 @@
 package com.narkii.security.info;
 
 import com.narkii.security.R;
-import com.narkii.security.common.Commons;
+import com.narkii.security.common.Constants;
 import com.narkii.security.common.FragmentsFactory;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
@@ -23,6 +24,7 @@ public class InformationDetailActivity extends FragmentActivity implements TabLi
 //	private TabHost tabHost;
 	private ViewPager viewPager;
 	
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -68,13 +70,13 @@ public class InformationDetailActivity extends FragmentActivity implements TabLi
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return Commons.INFO_PAPER_NUMS;
+			return Constants.INFO_PAPER_NUMS;
 		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
 			// TODO Auto-generated method stub
-			return Commons.INFO_PAPER_TITLES[position];
+			return Constants.INFO_PAPER_TITLES[position];
 		}
 	}
 

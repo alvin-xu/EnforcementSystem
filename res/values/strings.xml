@@ -10,7 +10,7 @@
     <string name="user">用户信息</string>
     
     <!-- enterprise 's information page navigation module --> 
-    <string name="base_data">基本资料</string>
+    <string name="base_data">基础资料</string>
     <string name="secure_data">安全资料</string>
     <string name="license_info">许可信息</string>
     <string name="record">检查记录</string>
@@ -50,6 +50,10 @@
     <string name="cancel">取消</string>
     <string name="print">打印</string>
     <string name="time">时间</string>
+    <string name="gender">性别</string>
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="tab_space">\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020\u0020</string>
     
     <!-- company information table header -->
     <string name="select">选择</string>
@@ -62,6 +66,7 @@
     <string name="phone">电话</string>
     <string name="valid_date">有效日期</string>
     <string name="varity">品种</string>
+   
     
     
     <!-- company information detail -->
@@ -105,5 +110,19 @@
 	<string name="enforce_paper">文书</string>
 	<string name="enforce_officer">执法人员</string>
 	<string name="enforce_num_id">证件号</string>
+	<string name="enforce_paper_add">新增文书</string>
+	<string name="enforce_paper_title">安全生产行政执法文书</string>
+	<string name="enforce_paper_inspect">现场检查记录</string>
+	<string name="enforce_paper_rectify">责令限期整改指令书</string>
+	<string name="enforce_paper_review">整改复查意见书</string>
 	
+	<!-- user info -->
+	<string name="user_base_data">基本资料</string>
+	<string name="user_real_name">真实姓名</string>
+	<string name="user_group">分组</string>
+	<string name="user_change_password">修改密码</string>
+	<string name="user_old_password">旧密码</string>
+	<string name="user_new_password">新密码</string>
+	<string name="user_new_password2">确认新密码</string>
+	<string name="user_upload_icon">点击上传头像</string>
 </resources>

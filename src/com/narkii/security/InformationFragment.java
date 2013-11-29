@@ -1,7 +1,6 @@
 package com.narkii.security;
 
 import com.narkii.security.R;
-import com.narkii.security.common.HVListView;
 import com.narkii.security.info.InformationDetailActivity;
 
 import android.content.Intent;
@@ -13,11 +12,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 
 public class InformationFragment extends Fragment{
 	private View view;
-	private HVListView companyList;
+	private ListView companyList;
 	private Button addButton;
 	
 	@Override
@@ -34,8 +33,8 @@ public class InformationFragment extends Fragment{
 		super.onActivityCreated(savedInstanceState);
 		
 //		companyList=(HVListView) getActivity().findViewById(android.R.id.list);
-		companyList=(HVListView) view.findViewById(R.id.company_info_list);
-		companyList.mListHead=(LinearLayout) view.findViewById(R.id.company_header11);
+		companyList=(ListView) view.findViewById(R.id.company_info_list);
+//		companyList.mListHead=(LinearLayout) view.findViewById(R.id.company_header11);
 		companyList.setAdapter(new CompanyDataAdapter());
 		
 		addButton=(Button) view.findViewById(R.id.button_add);
@@ -81,11 +80,11 @@ public class InformationFragment extends Fragment{
 //				((TextView)((ViewGroup)((ViewGroup)convertView).getChildAt(1)).getChildAt(i)).setText("textttttttttttttttttttttt555555555 "+i);
 //			}
 			//校正（处理同时上下和左右滚动出现错位情况）
-			View child = ((ViewGroup) convertView).getChildAt(2);//头2列不动，从第3列开始。
-			int head = companyList.getHeadScrollX();
-			if (child.getScrollX() != head) {
-				child.scrollTo(companyList.getHeadScrollX(), 0);
-			}
+//			View child = ((ViewGroup) convertView).getChildAt(2);//头2列不动，从第3列开始。
+//			int head = companyList.getHeadScrollX();
+//			if (child.getScrollX() != head) {
+//				child.scrollTo(companyList.getHeadScrollX(), 0);
+//			}
 			return convertView;
 		}
 		

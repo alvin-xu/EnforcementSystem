@@ -3,7 +3,7 @@ package com.narkii.security.info;
 import java.io.FileNotFoundException;
 
 import com.narkii.security.R;
-import com.narkii.security.common.Commons;
+import com.narkii.security.common.Constants;
 import com.narkii.security.common.MediaFileStorage;
 
 import android.app.Activity;
@@ -72,7 +72,7 @@ public class LicenseInfoFragment extends Fragment{
 				Intent i=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 				fileUri = MediaFileStorage.getOutputMediaFileUri(MediaFileStorage.MEDIA_TYPE_IMAGE);
 				i.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-				startActivityForResult(i, Commons.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+				startActivityForResult(i, Constants.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 			}
 		});
 		
@@ -84,7 +84,7 @@ public class LicenseInfoFragment extends Fragment{
 				Intent intent=new Intent();
 				intent.setType("image/*");	//如何调用文件管理器呢？此处只是图片
 				intent.setAction(Intent.ACTION_GET_CONTENT);
-				startActivityForResult(intent, Commons.CONTENT_GET_ACTIVITY_REQUEST_CODE);
+				startActivityForResult(intent, Constants.CONTENT_GET_ACTIVITY_REQUEST_CODE);
 			}
 		});
 		uploadButton.setOnClickListener(new OnClickListener() {
@@ -105,7 +105,7 @@ public class LicenseInfoFragment extends Fragment{
 		super.onActivityResult(requestCode, resultCode, data);
 		Log.d("app", "on activity result");
 		//相机结果回调
-		if(requestCode==Commons.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
+		if(requestCode==Constants.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
 			Log.d("app", "on activity result camera");
 			if(resultCode== Activity.RESULT_OK){
 				//为什么data.getData()会报NullPointer？
@@ -129,7 +129,7 @@ public class LicenseInfoFragment extends Fragment{
 			}
 		}
 		//本地文件结果回调
-		if(requestCode==Commons.CONTENT_GET_ACTIVITY_REQUEST_CODE){
+		if(requestCode==Constants.CONTENT_GET_ACTIVITY_REQUEST_CODE){
 			//如何实现文件和图片的区分？？？
 			if(resultCode== Activity.RESULT_OK){
 				fileUri=data.getData();

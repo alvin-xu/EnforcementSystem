@@ -1,6 +1,9 @@
 package com.narkii.security.common;
-
-public  class Commons {
+/**
+ * contain the common constants in the application.
+ * @author xubinbin
+ */
+public final class Constants {
 	public static final int MAIN_PAPER_NUMS=4;
 	public static String[] MAIN_PAPER_TITLES={"企业信息","现场执法","法律法规","用户信息"};
 	
@@ -12,5 +15,5 @@ public  class Commons {
 	public static final int CONTENT_GET_ACTIVITY_REQUEST_CODE = 300;
 	
 	
-	
+	private Constants(){}
 }

@@ -3,16 +3,20 @@
     package="com.narkii.security"
     android:versionCode="1"
     android:versionName="1.0" >
-	
+
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
-	
+
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -27,11 +31,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity 
+        <activity
             android:name=".info.InformationDetailActivity"
-            android:label="@string/info">
-            
+            android:label="@string/info" >
         </activity>
+        <activity
+            android:name=".enforce.InspectActivity"
+            android:label="@string/enforce_paper_inspect" >
+        </activity>
+        <activity
+            android:name=".enforce.RectifyActivity"
+            android:label="@string/enforce_paper_rectify" >
+        </activity>
+        <activity
+            android:name=".enforce.ReviewActivity"
+            android:label="@string/enforce_paper_review" />
     </application>
 
 </manifest>

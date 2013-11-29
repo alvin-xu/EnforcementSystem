@@ -1,8 +1,9 @@
 package com.narkii.security;
 
 import com.narkii.security.common.FragmentsFactory;
-import com.narkii.security.common.Commons;
+import com.narkii.security.common.Constants;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
@@ -30,6 +31,7 @@ public class MainActivity extends FragmentActivity implements TabListener{
 	private ActionBarDrawerToggle drawerToggle;
 	private ViewStub informationVS,enforcementVS,lawVS,userVS;
 	
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -123,13 +125,13 @@ public class MainActivity extends FragmentActivity implements TabListener{
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return Commons.MAIN_PAPER_NUMS;
+			return Constants.MAIN_PAPER_NUMS;
 		}
 		
 		@Override
 		public CharSequence getPageTitle(int position) {
 			// TODO Auto-generated method stub
-			return Commons.MAIN_PAPER_TITLES[position];
+			return Constants.MAIN_PAPER_TITLES[position];
 		}
 	}
 

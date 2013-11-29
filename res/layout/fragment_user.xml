@@ -2,11 +2,136 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <TextView 
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView_user" />
+        android:text="@string/user_base_data"/>
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    <TableLayout 
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	    	android:layout_height="wrap_content"
+	    	android:stretchColumns="1">
+	        <TableRow >
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/enforce_num_id"/>
+	            <EditText 
+	                android:id="@+id/user_num_id"
+	                android:inputType="number"/>
+	        </TableRow>
+	        <TableRow >
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/user_real_name"/>
+	            <EditText 
+	                android:id="@+id/user_real_name"
+	                android:inputType="text"/>
+	        </TableRow>
+	        <TableRow >
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/gender"/>
+	            <RadioGroup 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:orientation="horizontal">
+	                <RadioButton
+				        android:id="@+id/radioButton1"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:text="@string/male" />
+		            <RadioButton
+		        		android:id="@+id/radioButton2"
+		        		android:layout_width="wrap_content"
+		       		 	android:layout_height="wrap_content"
+		        		android:text="@string/female" />
+	            </RadioGroup>
+	            
+	        </TableRow>
+	        <TableRow >
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/phone"/>
+	            <EditText 
+	                android:id="@+id/user_phone"
+	                android:inputType="phone"/>
+	        </TableRow>
+	        <TableRow >
+	            <TextView 
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:text="@string/user_group"/>
+	            <Spinner 
+	                android:id="@+id/user_group"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"/>
+	        </TableRow>
+	    </TableLayout>
 
+	    <ImageView
+		    android:id="@+id/imageView1"
+		    android:layout_width="150dp"
+		    android:layout_height="200dp"
+		    android:layout_weight="2"
+		    android:contentDescription="@string/user_upload_icon"
+		    android:src="@drawable/chrysanthemum" />
+
+	</LinearLayout>
+
+	<Button 
+	    android:id="@+id/user_save"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/save"/>
+
+	<!-- 修改密码 -->
+	<TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/user_change_password"/>
+	<TableLayout 
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:stretchColumns="1">
+        <TableRow >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_old_password"/>
+            <EditText 
+                android:id="@+id/user_old_password"
+                android:inputType="textPassword"/>
+        </TableRow>
+        <TableRow >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_new_password"/>
+            <EditText 
+                android:id="@+id/user_new_password"
+                android:inputType="textPassword"/>
+        </TableRow>
+        <TableRow >
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_new_password2"/>
+            <EditText 
+                android:id="@+id/user_new_password2"
+                android:inputType="textPassword"/>
+        </TableRow>
+    </TableLayout>
+    <Button 
+	    android:id="@+id/user_save_password"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/save"/>
 </LinearLayout>
