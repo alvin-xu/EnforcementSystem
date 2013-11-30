@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/company_type"/>
             <Spinner 
-                android:id="@+id/drawer_company_type"/>
+                android:id="@+id/spinner_company_type"/>
         </TableRow>
 
         <TableRow
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/permission_type"/>
             <Spinner 
-                android:id="@+id/drawer_permission_type"/>
+                android:id="@+id/spinner_permission_type"/>
         </TableRow>
         <TableRow
             android:id="@+id/tableRow5"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/info_certificate_situ"/>
             <Spinner 
-                android:id="@+id/drawer_certificate_situ"/>
+                android:id="@+id/spinner_certificate_situ"/>
        
             <TextView 
                 android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
                 <Spinner
                     android:layout_width="wrap_content"
                 	android:layout_height="wrap_content" 
-               		android:id="@+id/drawer_time"
+               		android:id="@+id/spinner_time"
                		android:layout_weight="1"/>
                 <EditText 
 	                android:id="@+id/drawer_day"

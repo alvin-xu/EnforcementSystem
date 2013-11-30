@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class SecureDataFragment extends Fragment{
+	public static final String TAG="SecrueDataFragment";
 	private View view;
 	
 	@Override

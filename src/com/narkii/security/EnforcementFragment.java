@@ -1,12 +1,22 @@
 package com.narkii.security;
  
+import com.narkii.security.common.Constants;
+import com.narkii.security.data.DbCursorLoader;
+import com.narkii.security.data.DbOperations;
+import com.narkii.security.data.EnforceSysContract.DocumentType;
+import com.narkii.security.data.EnforceSysContract.EnterpriseType;
 import com.narkii.security.enforce.InspectActivity;
 import com.narkii.security.enforce.RectifyActivity;
 import com.narkii.security.enforce.ReviewActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.Loader;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,13 +32,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class EnforcementFragment extends Fragment implements OnItemSelectedListener{
+public class EnforcementFragment extends Fragment implements OnItemSelectedListener, LoaderCallbacks<Cursor>{
+	public static final String TAG="EnforcementFragment";
 	private View view;
 	private ListView enforceRecordsList;
 	private ListView companyNameList;
 	private TextView companyListTitle;
-	private Spinner paperSpinner;
+	private Spinner paperSpinner,enterpriseTypeSpinner;
 	private Button addPaperButton;
+	private SimpleCursorAdapter paperAdapter,enterpriseTypeAdapter;
 	
 	private String [] temps={
 			"晋江AAA公司",
@@ -48,16 +60,18 @@ public class EnforcementFragment extends Fragment implements OnItemSelectedListe
 		return view;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 		enforceRecordsList=(ListView) view.findViewById(R.id.enforce_record_list);
-//		enforceRecordsList.mListHead=(LinearLayout) view.findViewById(R.id.enforce_record_header);
-		enforceRecordsList.setAdapter(new EnforceRecordsAdapter());
-		
 		companyNameList=(ListView) view.findViewById(R.id.list_company_name);
 		companyListTitle=(TextView) view.findViewById(R.id.company_list_title);
+		enterpriseTypeSpinner=(Spinner) view.findViewById(R.id.spinner_company_type);
+		paperSpinner=(Spinner) view.findViewById(R.id.enforce_paper_select);
+		
+		enforceRecordsList.setAdapter(new EnforceRecordsAdapter());
 		companyNameList.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, temps));
 		companyNameList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -70,11 +84,19 @@ public class EnforcementFragment extends Fragment implements OnItemSelectedListe
 			
 		});
 		
-		paperSpinner=(Spinner) view.findViewById(R.id.enforce_paper_select);
-		ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(getActivity(), R.array.spinner_paper_type, android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		paperSpinner.setAdapter(adapter);
+//		ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(getActivity(), R.array.spinner_paper_type, android.R.layout.simple_spinner_item);
+//	
+//		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//		paperSpinner.setAdapter(adapter);
+		
+		paperAdapter=new SimpleCursorAdapter(getActivity(), android.R.layout.simple_spinner_item, null, new String[]{DocumentType.COLUMN_NAME},new int[]{android.R.id.text1});
+		paperAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		paperSpinner.setAdapter(paperAdapter);
 		paperSpinner.setOnItemSelectedListener(this);
+		
+		enterpriseTypeAdapter=new SimpleCursorAdapter(getActivity(), android.R.layout.simple_spinner_item, null, new String[]{EnterpriseType.COLUMN_NAME},new int[]{android.R.id.text1});
+		enterpriseTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		enterpriseTypeSpinner.setAdapter(enterpriseTypeAdapter);
 		
 		addPaperButton=(Button) view.findViewById(R.id.button_paper_add);
 		addPaperButton.setOnClickListener(new OnClickListener() {
@@ -100,6 +122,9 @@ public class EnforcementFragment extends Fragment implements OnItemSelectedListe
 				}
 			}
 		});
+		
+		getLoaderManager().initLoader(Constants.SPINNER_ENTERPRISE_TYPE_ID, null, this);
+		getLoaderManager().restartLoader(Constants.SPINNER_DOCUMENT_TYPE_ID, null, this);
 	}
 	
 	class EnforceRecordsAdapter extends BaseAdapter{
@@ -128,20 +153,12 @@ public class EnforcementFragment extends Fragment implements OnItemSelectedListe
 			if(convertView==null){
 				convertView=getActivity().getLayoutInflater().inflate(R.layout.enforce_record_item,null);
 			}
-			//初始化数据。
-//			for(int i=0;i<9;i++){
-//				((TextView)((ViewGroup)((ViewGroup)convertView).getChildAt(1)).getChildAt(i)).setText("textttttttttttttttttttttt555555555 "+i);
-//			}
-			//校正（处理同时上下和左右滚动出现错位情况）
-//			View child = ((ViewGroup) convertView).getChildAt(2);//头2列不动，从第3列开始。
-//			int head = enforceRecordsList.getHeadScrollX();
-//			if (child.getScrollX() != head) {
-//				child.scrollTo(enforceRecordsList.getHeadScrollX(), 0);
-//			}
+
 			return convertView;
 		}
 		
 	}
+	
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
@@ -155,5 +172,60 @@ public class EnforcementFragment extends Fragment implements OnItemSelectedListe
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Loader<Cursor> onCreateLoader(int id, Bundle arg1) {
+		// TODO Auto-generated method stub
+		Log.d("APP", " id+"+id);
+		DbCursorLoader dbLoader=null;
+		if(id==Constants.SPINNER_DOCUMENT_TYPE_ID){
+			dbLoader=new DbCursorLoader(getActivity()) {
+			
+				@Override
+				public Cursor getDbCursor() {
+					// TODO Auto-generated method stub
+					DbOperations operations=DbOperations.getInstance(getActivity());
+					Cursor cursor=operations.query(DocumentType.TABLE_NAME, null, null, null);
+					Log.d("APP", "paper count "+cursor.getCount());
+					return cursor;
+				}
+			};
+		}else if(id==Constants.SPINNER_ENTERPRISE_TYPE_ID){
+			dbLoader=new DbCursorLoader(getActivity()) {
+				
+				@Override
+				public Cursor getDbCursor() {
+					// TODO Auto-generated method stub
+					DbOperations operations=DbOperations.getInstance(getActivity());
+					Cursor cursor=operations.query(EnterpriseType.TABLE_NAME, null, null, null);
+					Log.d("APP", "paper count "+cursor.getCount());
+					return cursor;
+				}
+			};
+		}
+		return dbLoader;
+	}
+
+	@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+		// TODO Auto-generated method stub
+		int id=loader.getId();
+		if(id==Constants.SPINNER_DOCUMENT_TYPE_ID){
+			paperAdapter.swapCursor(cursor);
+		}else if(id==Constants.SPINNER_ENTERPRISE_TYPE_ID){
+			enterpriseTypeAdapter.swapCursor(cursor);
+		}
+	}
+
+	@Override
+	public void onLoaderReset(Loader<Cursor> loader) {
+		// TODO Auto-generated method stub
+		int id=loader.getId();
+		if(id==Constants.SPINNER_DOCUMENT_TYPE_ID){
+			paperAdapter.swapCursor(null);
+		}else if(id==Constants.SPINNER_ENTERPRISE_TYPE_ID){
+			enterpriseTypeAdapter.swapCursor(null);
+		}
 	}
 }

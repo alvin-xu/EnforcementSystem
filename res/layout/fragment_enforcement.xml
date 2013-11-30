@@ -37,7 +37,7 @@
 	                android:layout_height="wrap_content"
 	                android:text="@string/company_type"/>
 	            <Spinner 
-	                android:id="@+id/drawer_company_type"/>
+	                android:id="@+id/spinner_company_type"/>
 	        </TableRow>
 	         <TableRow
 	            android:id="@+id/tableRow3"

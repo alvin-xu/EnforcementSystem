@@ -10,6 +10,8 @@ import android.os.Environment;
 import android.util.Log;
 
 public class MediaFileStorage {
+	public static final String TAG="MediaFileStorage";
+	
 	public static final int MEDIA_TYPE_IMAGE = 1;
 	public static final int MEDIA_TYPE_VIDEO = 2;
 	

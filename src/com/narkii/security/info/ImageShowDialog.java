@@ -19,6 +19,8 @@ import android.widget.ImageView;
 
 @SuppressLint("ValidFragment")
 public class ImageShowDialog extends DialogFragment{
+	public static final String TAG="ImageShowDialog";
+	
 	Bitmap bitmap;
 	Matrix matrix;
 	View view;

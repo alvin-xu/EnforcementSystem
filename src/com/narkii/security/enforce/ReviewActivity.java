@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 
 public class ReviewActivity extends Activity{
+	public static final String TAG="ReviewActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

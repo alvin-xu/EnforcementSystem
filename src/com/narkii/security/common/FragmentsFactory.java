@@ -13,6 +13,7 @@ import com.narkii.security.info.SecureDataFragment;
 import android.support.v4.app.Fragment;
  
 public class FragmentsFactory {
+	public static final String TAG="FragmentFactory";
 	public static Fragment getMainFragment(int index){
 		switch (index) {
 		case 0:

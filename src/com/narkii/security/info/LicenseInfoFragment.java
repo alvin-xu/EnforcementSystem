@@ -26,6 +26,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class LicenseInfoFragment extends Fragment{
+	public static final String TAG="LicenseInfoFragment";
+	
 	private View view;
 	
 	private Button fileButton,captureButton,uploadButton;

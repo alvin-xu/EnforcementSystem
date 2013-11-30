@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class RecordFragment extends Fragment{
+	public static final String TAG="RecordFragment";
+	
 	private View view;
 	
 	@Override

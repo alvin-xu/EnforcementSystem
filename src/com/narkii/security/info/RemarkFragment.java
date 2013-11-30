@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class RemarkFragment extends Fragment{
+	public static final String TAG="RemarkFragment";
 	private View view;
 	
 	@Override

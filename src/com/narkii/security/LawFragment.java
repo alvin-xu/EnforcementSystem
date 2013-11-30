@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class LawFragment extends Fragment{
+	public static final String TAG="LawFragment";
 	private View view;
 	
 	@Override

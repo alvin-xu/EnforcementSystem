@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 public class RectifyActivity extends Activity{
+	public static final String TAG="RectifyActivity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

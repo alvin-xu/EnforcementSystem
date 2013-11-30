@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class UserFragment extends Fragment{
+	public static final String TAG="UserFragment";
 	private View view;
 	
 	@Override

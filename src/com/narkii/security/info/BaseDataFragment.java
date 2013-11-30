@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 public class BaseDataFragment extends Fragment{
-	public static final String TAG="BaseData";
+	public static final String TAG="BaseDataFragment";
 	private View view;
 	private Button addResponButton,addManagerButton;
 	

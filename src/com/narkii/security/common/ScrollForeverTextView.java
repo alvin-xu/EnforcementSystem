@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;  
   
 public class ScrollForeverTextView extends TextView {  
+	public static final String TAG="ScrollForeverTextView";
   
     public ScrollForeverTextView(Context context) {  
         super(context);  

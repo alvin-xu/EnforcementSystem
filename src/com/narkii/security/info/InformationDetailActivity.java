@@ -20,7 +20,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class InformationDetailActivity extends FragmentActivity implements TabListener{
-	public static final String TAG="InfoDetail";
+	public static final String TAG="InfoDetailActivity";
 //	private TabHost tabHost;
 	private ViewPager viewPager;
 	

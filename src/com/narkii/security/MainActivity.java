@@ -2,6 +2,8 @@ package com.narkii.security;
 
 import com.narkii.security.common.FragmentsFactory;
 import com.narkii.security.common.Constants;
+import com.narkii.security.data.DbOperations;
+import com.narkii.security.data.InitDataBase;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -17,6 +19,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,13 +27,22 @@ import android.view.ViewStub;
 
 public class MainActivity extends FragmentActivity implements TabListener{
 
-	public static final String TAG="MAIN";
+	public static final String TAG="MainActivity";
 	private ViewPager viewPager;
 	
 	private DrawerLayout drawerLayout;
 	private ActionBarDrawerToggle drawerToggle;
 	private ViewStub informationVS,enforcementVS,lawVS,userVS;
 	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		//当应用退出时关闭数据库
+		DbOperations.getInstance(MainActivity.this).close();
+		Log.d(TAG, "on destroy");
+	}
+
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +88,15 @@ public class MainActivity extends FragmentActivity implements TabListener{
 			
 		};
 		drawerLayout.setDrawerListener(drawerToggle);
+		
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				InitDataBase.init(MainActivity.this);
+			}
+		}).start();
 	}
 
 	@Override
