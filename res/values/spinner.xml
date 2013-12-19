@@ -5,4 +5,31 @@
         <item>限期整改指令书</item>
         <item>整改复查意见书</item>
     </string-array>
+    <string-array name="spinner_search_type">
+        <item>全部</item>
+        <item>新扩建企业</item>
+        <item>责令整改中</item>
+        <item>停业歇业</item>
+        <item>重点整改企业</item>
+        <item>安全生产标准化</item>
+        <item>易制毒备案</item>
+        <item>重大危险源</item>
+        <item>应急备案</item>
+    </string-array>
+    <string-array name="spinner_certificate_situ">
+        <item>全部</item>
+        <item>持证</item>
+        <item>注销</item>
+        <item>吊销</item>
+    </string-array>
+    <string-array name="spinner_time">
+        <item>整改到期</item>
+        <item>许可到期</item>
+    </string-array>
+    <string-array name="spinner_law_search">
+        <item>全部</item>
+        <item>法律法规</item>
+        <item>化学危险品</item>
+        <item>安全生产许可规范</item>
+    </string-array>
 </resources>

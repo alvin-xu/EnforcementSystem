@@ -35,19 +35,10 @@ public class ImageShowDialog extends DialogFragment{
 
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		
-//		bitmap=BitmapFactory.decodeResource(getResources(), R.drawable.koala);
-	}
-
-
-	@Override
 	    public Dialog onCreateDialog(Bundle savedInstanceState) {
 	        // Use the Builder class for convenient dialog construction
 
-	        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+	        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.ImageDialogStyle);
 	        LayoutInflater inflater=getActivity().getLayoutInflater();
 	        
 	        view=inflater.inflate(R.layout.dialog_license_image, null);
@@ -55,6 +46,7 @@ public class ImageShowDialog extends DialogFragment{
 			b1=(Button) view.findViewById(R.id.button_left_turn);
 			b2=(Button) view.findViewById(R.id.button_right_turn);
 			imageView=(ImageView) view.findViewById(R.id.image_show);
+			imageView.setImageBitmap(bitmap);
 			
 			b1.setOnClickListener(new OnClickListener() {
 				
@@ -80,16 +72,17 @@ public class ImageShowDialog extends DialogFragment{
 	        
 	        
 	        builder.setView(view)
+	        		.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+	                   public void onClick(DialogInterface dialog, int id) {
+	                       // User cancelled the dialog
+	                   }
+	               })
 	               .setPositiveButton(R.string.print, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
 	                       // FIRE ZE MISSILES!
 	                   }
-	               })
-	               .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-	                   public void onClick(DialogInterface dialog, int id) {
-	                       // User cancelled the dialog
-	                   }
 	               });
+	               
 	        // Create the AlertDialog object and return it
 	        return builder.create();
 	    }

@@ -22,6 +22,20 @@ public final class Constants {
 	public static final int LIST_ENTERPRISE_INFO_ID=15;
 	public static final int LIST_ENFORCE_RECORD_ID=16;
 	public static final int LIST_ENFORCE_ENTERPRISE_NAME_ID=17;
+	public static final int ENTERPRISE_INFO_ID=18;
+	public static final int ENTERPRISE_PERSON_ID=19;
+	public static final int SPINNER_AREA_ID=20;
+	public static final int FILING_ID=21;
+	public static final int PERMISSION_IMAGE_ID=22;
+	public static final int PERMISSION_FILE_ID=23;
+	public static final int SPINNER_MEMBER_NAME_ID=24;
+
+	public static final int INFO_DELETE_ITEM_OK_MSG=51;
+	public static final int INSERT_UPLOADED_OK_MSG=52;
+	public static final int INSERT_OK_MSG=53;
+	public static final int INSERT_FAIL_MSG=54;
+	public static final int UPDATE_OK_MSG=55;
+	public static final int UPDATE_FAIL_MSG=56;
 	
 	private Constants(){}
 }

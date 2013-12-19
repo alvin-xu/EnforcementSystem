@@ -21,7 +21,7 @@
 	            android:layout_height="wrap_content"
                 android:text="@string/company_name"/>
             <EditText 
-                android:id="@+id/company_name"
+                android:id="@+id/text_company_name"
                 android:inputType="text"
                 android:layout_span="3"/>
             <TextView 
@@ -29,7 +29,7 @@
 	            android:layout_height="wrap_content"
                 android:text="@string/company_address"/>
             <EditText 
-                android:id="@+id/company_address"
+                android:id="@+id/text_company_address"
                 android:inputType="text"
                 android:layout_span="3"/>
         </TableRow>
@@ -43,21 +43,21 @@
 	            android:layout_height="wrap_content"
                 android:text="@string/info_code_organization"/>
             <EditText 
-                android:id="@+id/info_code_organization"
+                android:id="@+id/text_code_organization"
                 android:inputType="text"/>
             <TextView 
                 android:layout_width="wrap_content" 
 	            android:layout_height="wrap_content"
                 android:text="@string/info_num_file"/>
             <EditText 
-                android:id="@+id/info_num_file"
+                android:id="@+id/text_num_file"
                 android:inputType="text"/>
             <TextView 
                 android:layout_width="wrap_content" 
 	            android:layout_height="wrap_content"
                 android:text="@string/company_area"/>
             <Spinner 
-                android:id="@+id/company_area"/>
+                android:id="@+id/spinner_company_area"/>
         </TableRow>
 
         <TableRow
@@ -70,14 +70,14 @@
 	            android:layout_height="wrap_content"
                 android:text="@string/type"/>
             <Spinner 
-                android:id="@+id/type"/>
+                android:id="@+id/spinner_type"/>
             
             <TextView 
                 android:layout_width="wrap_content" 
 	            android:layout_height="wrap_content"
                 android:text="@string/phone"/>
             <EditText 
-                android:id="@+id/info_phone"
+                android:id="@+id/text_info_phone"
                 android:inputType="phone"/>
             
             <TextView 
@@ -85,7 +85,7 @@
 	            android:layout_height="wrap_content"
                 android:text="@string/fax"/>
             <EditText 
-                android:id="@+id/info_fax"
+                android:id="@+id/text_info_fax"
                 android:inputType="text"/>
             
             <TextView 
@@ -93,16 +93,12 @@
 	            android:layout_height="wrap_content"
                 android:text="@string/email"/>
             <EditText 
-                android:id="@+id/info_email"
+                android:id="@+id/text_info_email"
                 android:inputType="textEmailAddress"/>
         </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </TableRow>
     </TableLayout>
+    
 	<LinearLayout 
 	    android:layout_width="fill_parent"
     	android:layout_height="wrap_content"
@@ -159,13 +155,13 @@
 	        android:layout_height="wrap_content">
 	  		<TableRow >
 	            <CheckBox 
-	                android:id="@+id/info_shutdown"
+	                android:id="@+id/check_info_shutdown"
 	                android:text="@string/info_shutdown"/>
 	             <CheckBox 
-	                android:id="@+id/info_rectify"
+	                android:id="@+id/check_info_rectify"
 	                android:text="@string/info_rectify"/>
 	              <CheckBox 
-	                android:id="@+id/info_expend"
+	                android:id="@+id/check_info_expend"
 	                android:text="@string/info_expend"/>
 			</TableRow>
 	    </TableLayout>

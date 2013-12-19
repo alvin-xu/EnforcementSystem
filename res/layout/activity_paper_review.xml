@@ -194,16 +194,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
-
+			<Button
+                android:id="@+id/review_seal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/enforce_seal" />
             <Button
-                android:id="@+id/inspect_save"
+                android:id="@+id/review_save"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/save" />
 
             <Button
-                android:id="@+id/inspect_print"
+                android:id="@+id/review_print"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

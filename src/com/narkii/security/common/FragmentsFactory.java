@@ -1,9 +1,9 @@
 package com.narkii.security.common;
 
-import com.narkii.security.EnforcementFragment;
 import com.narkii.security.InformationFragment;
 import com.narkii.security.LawFragment;
 import com.narkii.security.UserFragment;
+import com.narkii.security.enforce.EnforcementFragment;
 import com.narkii.security.info.BaseDataFragment;
 import com.narkii.security.info.LicenseInfoFragment;
 import com.narkii.security.info.RecordFragment;

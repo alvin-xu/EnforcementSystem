@@ -1,61 +1,64 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    android:layout_height="65dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical" >
 
     <TextView
         android:id="@+id/colum1"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+        style="@style/enfoceTextHeader"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="@string/select"/>
- 	<TextView
-        android:id="@+id/colum2"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:text="@string/enforce_seria" />
  	
 
         <TextView
             android:id="@+id/colum3"
+            style="@style/enfoceTextHeader"
             android:layout_width="0dp"
-            android:layout_weight="3"
+        android:layout_weight="2"
             android:layout_height="wrap_content"
             android:text="@string/enforce_time_law"/>
 
         <TextView
             android:id="@+id/colum4"
+             style="@style/enfoceTextHeader"
             android:layout_width="0dp"
-            android:layout_weight="3"
+        android:layout_weight="2"
             android:layout_height="wrap_content"
             android:text="@string/enforce_form_check"/>
 
         <TextView
             android:id="@+id/colum5"
+             style="@style/enfoceTextHeader"
             android:layout_width="0dp"
-            android:layout_weight="3"
+        android:layout_weight="2"
             android:layout_height="wrap_content"
             android:text="@string/enforce_paper"/>
 
         <TextView
             android:id="@+id/colum6"
+            style="@style/enfoceTextHeader"
             android:layout_width="0dp"
-            android:layout_weight="2"
+        android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/enforce_officer" />
 
         <TextView
             android:id="@+id/colum7"
+             style="@style/enfoceTextHeader"
             android:layout_width="0dp"
-            android:layout_weight="3"
+        android:layout_weight="3"
             android:layout_height="wrap_content"
             android:text="@string/enforce_num_id"/>
         
         <TextView
             android:id="@+id/colum10"
+             style="@style/enfoceTextHeader"
             android:layout_width="0dp"
-            android:layout_weight="3"
+        android:layout_weight="2"
             android:layout_height="wrap_content"
             android:text="@string/remark"/>
 

@@ -24,7 +24,7 @@ public class MediaFileStorage {
 			Log.d("APP", "sdcard is't mounted!");
 			return null;
 		}
-		mediaStorageFile=new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "CameraDemo");
+		mediaStorageFile=new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "EnforcementSys");
 		if(!mediaStorageFile.exists()){
 			if(!mediaStorageFile.mkdirs()){
 				Log.d("APP", "fail to create the directory");

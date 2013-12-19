@@ -4,7 +4,7 @@
     android:orientation="horizontal" >
 
     <CheckBox
-        android:id="@+id/company_select"
+        android:id="@+id/check_company_select"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"/>
@@ -35,8 +35,7 @@
             android:singleLine="true"
             android:scrollHorizontally="true"
             android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:text="company_addresscompany_addresscompany_addresscompany_address111"/>
+            android:marqueeRepeatLimit="marquee_forever"/>
         <TextView
             android:id="@+id/text_responsor"
             android:layout_width="0dp"

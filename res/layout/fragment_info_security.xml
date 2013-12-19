@@ -25,13 +25,13 @@
 			            android:layout_height="wrap_content"
 			            android:text="@string/type"/>
 	    	        <Spinner 
-	    	            android:id="@+id/info_secure_type"/>
+	    	            android:id="@+id/spinner_secure_type"/>
 	    	        <TextView 
 			    	    android:layout_width="wrap_content" 
 			            android:layout_height="wrap_content"
 			            android:text="@string/info_certificate_situ"/>
 	    	        <Spinner 
-	    	            android:id="@+id/info_certification_situ"/>
+	    	            android:id="@+id/spinner_certification_situ"/>
 	    	    </TableRow>
 	    	    <TableRow >
 	    	        <TextView 
@@ -39,7 +39,7 @@
 			            android:layout_height="wrap_content"
 			            android:text="@string/code"/>
 	    	        <EditText 
-	    	            android:id="@+id/info_code_secure"
+	    	            android:id="@+id/text_code_secure"
 	    	            android:inputType="text"/>
 	    	        
 	    	        <TextView 
@@ -47,16 +47,16 @@
 			            android:layout_height="wrap_content"
 			            android:text="@string/info_date_deliver_license"/>
 	    	        <EditText 
-	    	            android:id="@+id/info_date_deliver_license"
-	    	            android:inputType="text"/>
+	    	            android:id="@+id/text_date_deliver_license"
+	    	            android:inputType="date"/>
 	    	        
 	    	        <TextView 
 			    	    android:layout_width="wrap_content" 
 			            android:layout_height="wrap_content"
 			            android:text="@string/valid_date"/>
 	    	        <EditText 
-	    	            android:id="@+id/info_date_valid"
-	    	            android:inputType="text"/>"
+	    	            android:id="@+id/text_date_valid"
+	    	            android:inputType="date"/>
 	    	    </TableRow>
 	    	    <TableRow >
 	    	        <TextView 
@@ -64,7 +64,7 @@
 			            android:layout_height="wrap_content"
 			            android:text="@string/info_range"/>
 	    	        <EditText 
-	    	            android:id="@+id/info_range"
+	    	            android:id="@+id/text_range"
 	    	            android:inputType="textMultiLine"
 	    	            android:layout_span="5"/>
 	    	    </TableRow>
@@ -89,14 +89,14 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/rank"/>
 			        <EditText 
-			            android:id="@+id/info_secure_rank"
+			            android:id="@+id/text_f1_secure_rank"
 			            android:inputType="text"/>
 			        <TextView 
 		    	    	android:layout_width="wrap_content" 
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_office_license"/>
 			        <EditText 
-			            android:id="@+id/info_office_license"
+			            android:id="@+id/text_f1_office_license"
 			            android:inputType="text"
 			            android:layout_span="3"/>
 	    	    </TableRow>
@@ -106,7 +106,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/code"/>
 			        <EditText 
-			            android:id="@+id/info_standard_code"
+			            android:id="@+id/text_f1_standard_code"
 			            android:inputType="text"/>
 			        
 			        <TextView 
@@ -114,7 +114,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_date_deliver_license"/>
 			        <EditText 
-			            android:id="@+id/info_date_deliver_license2"
+			            android:id="@+id/text_f1_date_deliver"
 			            android:inputType="date"/>
 			        
 			        <TextView 
@@ -122,7 +122,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/valid_date"/>
 			        <EditText 
-			            android:id="@+id/info_date_valid2"
+			            android:id="@+id/text_f1_date_valid"
 			            android:inputType="date"/>
 	    	    </TableRow>
 		    </TableLayout>
@@ -145,22 +145,22 @@
 		    	    	android:layout_width="wrap_content" 
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_varity_sort"/>
-			        <EditText 
-			            android:id="@+id/info_varity_sort"
-			            android:inputType="text"/>
+			        
+			        <Spinner
+			            android:id="@+id/spinner_f2_varity_sort"/>
 			        <TextView 
 		    	    	android:layout_width="wrap_content" 
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/varity"/>
 			        <EditText 
-			            android:id="@+id/info_varity"
+			            android:id="@+id/text_f2_varity"
 			            android:inputType="text"/>
 			        <TextView 
 		    	    	android:layout_width="wrap_content" 
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_flow"/>
 			        <EditText 
-			            android:id="@+id/info_flow"
+			            android:id="@+id/text_f2_flow"
 			            android:inputType="text"/>
 	    	    </TableRow>
 		        <TableRow >
@@ -169,7 +169,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/code"/>
 			        <EditText 
-			            android:id="@+id/info_standard_code3"
+			            android:id="@+id/text_f2_standard_code"
 			            android:inputType="text"/>
 			        
 			        <TextView 
@@ -177,7 +177,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_date_deliver_license"/>
 			        <EditText 
-			            android:id="@+id/info_date_deliver_license3"
+			            android:id="@+id/text_f2_date_deliver"
 			            android:inputType="date"/>
 			        
 			        <TextView 
@@ -185,7 +185,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/valid_date"/>
 			        <EditText 
-			            android:id="@+id/info_date_valid3"
+			            android:id="@+id/text_f2_date_valid"
 			            android:inputType="date"/>
 	    	    </TableRow>
 		    </TableLayout>
@@ -209,21 +209,21 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/code"/>
 			        <EditText 
-			            android:id="@+id/info_danger_code"
+			            android:id="@+id/text_f3_danger_code"
 			            android:inputType="text"/>
 			        <TextView 
 		    	    	android:layout_width="wrap_content" 
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/varity"/>
 			        <EditText 
-			            android:id="@+id/info_danger_varity"
+			            android:id="@+id/text_f3_danger_varity"
 			            android:inputType="text"/>
 			        <TextView 
 		    	    	android:layout_width="wrap_content" 
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_reserves"/>
 			        <EditText 
-			            android:id="@+id/info_danger_reservers"
+			            android:id="@+id/text_f3_danger_reservers"
 			            android:inputType="text"/>
 	    	    </TableRow>
 		        <TableRow >
@@ -232,7 +232,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/rank"/>
 			        <EditText 
-			            android:id="@+id/info_danger_rank"
+			            android:id="@+id/text_f3_danger_rank"
 			            android:inputType="text"/>
 			        
 			        <TextView 
@@ -240,7 +240,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_date_evaluate"/>
 			        <EditText 
-			            android:id="@+id/info_date_evaluate"
+			            android:id="@+id/text_f3_date_evaluate"
 			            android:inputType="date"/>
 			        
 			        <TextView 
@@ -248,7 +248,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_date_connect"/>
 			        <EditText 
-			            android:id="@+id/info_date_connect"
+			            android:id="@+id/text_f3_date_connect"
 			            android:inputType="date"/>
 	    	    </TableRow>
 		    </TableLayout>
@@ -272,21 +272,21 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_name_filing"/>
 			        <EditText 
-			            android:id="@+id/info_name_filing"
+			            android:id="@+id/text_f4_name_filing"
 			            android:inputType="text"/>
 			        <TextView 
 		    	    	android:layout_width="wrap_content" 
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_num_file"/>
 			        <EditText 
-			            android:id="@+id/info_num_file"
+			            android:id="@+id/text_f4_num_file"
 			            android:inputType="text"/>
 			        <TextView 
 		    	    	android:layout_width="wrap_content" 
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_date_deliver"/>
 			        <EditText 
-			            android:id="@+id/info_date_deliver"
+			            android:id="@+id/text_f4_date_deliver"
 			            android:inputType="date"/>
 	    	    </TableRow>
 		        <TableRow >
@@ -295,7 +295,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_num_version"/>
 			        <EditText 
-			            android:id="@+id/info_num_version"
+			            android:id="@+id/text_f4_num_version"
 			            android:inputType="text"/>
 			        
 			        <TextView 
@@ -303,7 +303,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_date_filing"/>
 			        <EditText 
-			            android:id="@+id/info_date_filing"
+			            android:id="@+id/text_f4_date_filing"
 			            android:inputType="date"/>
 			        
 			        <TextView 
@@ -311,7 +311,7 @@
 		           	 	android:layout_height="wrap_content"
 		            	android:text="@string/info_date_review"/>
 			        <EditText 
-			            android:id="@+id/info_date_review"
+			            android:id="@+id/text_f4_date_review"
 			            android:inputType="date"/>
 	    	    </TableRow>
 		    </TableLayout>

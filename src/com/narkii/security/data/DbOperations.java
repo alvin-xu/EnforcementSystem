@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.util.Log;
 
 public class DbOperations {
 	public static final String TAG="DbOperations";
@@ -43,7 +45,7 @@ public class DbOperations {
 
 		return true;
 	}
-	
+
 	/**
 	 * 插入数据
 	 * @param table		表名
@@ -57,6 +59,46 @@ public class DbOperations {
 		return database.insert(table, null, values);
 	}
 	
+	/**
+	 * 删除一条数据
+	 * @param table			表名
+	 * @param whereClause	查询条件
+	 * @param whereArgs		查询条件中的参数值
+	 * @return	int 删除的记录数/0 删除失败
+	 */
+	public int delete(String table,String whereClause,String[] whereArgs){
+		return database.delete(table, whereClause, whereArgs);
+	}
+	
+	/**
+	 * 批量删除大量数据
+	 * @param table
+	 * @param where
+	 * @param args	二维参数数组
+	 * @return
+	 */
+	public int delete(String table,String where,String[][] args){
+		int count=0;
+		database.beginTransaction();
+		for(int i=0;i<args.length;i++){
+			count+=database.delete(table, where, args[i]);
+			Log.d(TAG, "count:"+count);
+		}
+		database.setTransactionSuccessful();
+		database.endTransaction();
+		return	count;
+	}
+	/**
+	 * 更新数据
+	 * @param table			表名
+	 * @param values		需要更改的"列-值"对
+	 * @param whereClause	查询条件
+	 * @param whereArgs		查询条件中的参数值
+	 * @return
+	 */
+	public int update(String table,ContentValues values,String whereClause, String[] whereArgs){
+		return database.update(table, values, whereClause, whereArgs);
+	}
 	/**
 	 * 查询数据
 	 * @param table		The table name to compile the query against.
@@ -74,7 +116,7 @@ public class DbOperations {
 	}
 	
 	/**
-	 * 数据库查询函数
+	 * 查询数据
 	 * @param distinct	true if you want each row to be unique, false otherwise.
 	 * @param table		The table name to compile the query against.
 	 * @param columns	A list of which columns to return. Passing null will return all columns, which is discouraged to prevent reading data from storage that isn't going to be used.
@@ -91,12 +133,29 @@ public class DbOperations {
 		
 		return null;
 	}
-	
+	public Cursor rawQuery(String sql,String[] selectionArgs){
+		Cursor cursor=database.rawQuery(sql, selectionArgs);
+		return cursor;
+	}
+	public Cursor joinQuery(String tables,String[] columns,String selection,String[] args){
+		SQLiteQueryBuilder builder=new SQLiteQueryBuilder();
+		builder.setTables(tables);
+		Cursor cursor=builder.query(database, columns, selection, args, null, null, null);
+		return cursor;
+	}
+
 	/**
 	 * 关闭数据库连接，不使用时必须显示调用。
 	 */
 	public void close(){
-		if(database!=null)
+		if(database!=null){
 			database.close();
+			operations=null;
+		}
+	}
+	public SQLiteDatabase getDatabase(){
+		if(database!=null)
+			return database;
+		return null;
 	}
 }

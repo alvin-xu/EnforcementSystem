@@ -47,6 +47,7 @@
     <string name="rank">等级</string>
     <string name="name">姓名</string>
     <string name="upload">上传</string>
+    <string name="ok">确定</string>
     <string name="cancel">取消</string>
     <string name="print">打印</string>
     <string name="time">时间</string>
@@ -115,7 +116,7 @@
 	<string name="enforce_paper_inspect">现场检查记录</string>
 	<string name="enforce_paper_rectify">责令限期整改指令书</string>
 	<string name="enforce_paper_review">整改复查意见书</string>
-	
+	<string name="enforce_seal">盖章</string>
 	<!-- user info -->
 	<string name="user_base_data">基本资料</string>
 	<string name="user_real_name">真实姓名</string>

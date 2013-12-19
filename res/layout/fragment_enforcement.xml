@@ -1,142 +1,81 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-	<LinearLayout 
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:baselineAligned="false"
-	    android:orientation="horizontal">
-	    <TableLayout
-	        android:layout_width="0dp"
-	        android:layout_height="wrap_content"
-	        android:stretchColumns="1"
-	        android:layout_weight="1"
-	        >
-	
-	        <TableRow
-	            android:id="@+id/tableRow1"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content" >
-	            <TextView 
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:text="@string/company_name"/>
-	            <EditText 
-	                android:id="@+id/drawer_text_name"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:inputType="text"/>
-	        </TableRow>
-	        <TableRow
-	            android:id="@+id/tableRow2"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content" >
-	            <TextView 
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:text="@string/company_type"/>
-	            <Spinner 
-	                android:id="@+id/spinner_company_type"/>
-	        </TableRow>
-	         <TableRow
-	            android:id="@+id/tableRow3"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content" >
-	            <TextView 
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:text="@string/time"/>
-	            <LinearLayout 
-	                android:layout_width="match_parent"
-	                android:layout_height="wrap_content"
-	                android:orientation="horizontal">
-	                <Spinner 
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:layout_weight="1"
-	                	android:id="@+id/drawer_time"/>
-	                <EditText 
-		                android:id="@+id/drawer_day"
-		                android:layout_width="80dp"
-		                android:layout_height="wrap_content"
-		                android:inputType="number"/>
-	                <TextView 
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content"
-	                    android:text="天"/>
-	            </LinearLayout>
-	          	
-	        </TableRow>
-	        <TableRow 
-	            android:id="@+id/tableRow4"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content">
-	            <Button 
-	                android:id="@+id/button_drawer_search"
-	                android:text="@string/search"
-	                android:layout_span="2"/>
-	        </TableRow>
-	        <TableRow >
-	            <TextView 
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:text="@string/enforce_paper"/>
-	            <TableRow >
-		            <Spinner 
-		                android:id="@+id/enforce_paper_select"
-		                android:layout_width="0dp"
-		                android:layout_weight="1"
-		                android:layout_height="wrap_content"/>
-		            <Button
-		                android:id="@+id/button_paper_add"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:text="@string/enforce_paper_add"/>
-	            </TableRow>
-	        </TableRow>
-	    </TableLayout>
-		
-	    <LinearLayout 
-	        android:layout_width="0dp"
-	        android:layout_height="200dp"
-	        android:layout_weight="1"
-	        android:orientation="vertical">
-	        <TextView 
-	            android:id="@+id/company_list_title"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:text="需复查的企业"/>
-	        <ListView
-		         android:id="@+id/list_company_name"
-		         android:layout_width="wrap_content"
-		         android:layout_height="wrap_content"
-	         	  >
-	     </ListView>
-	    </LinearLayout>
-     
-	</LinearLayout>
-	
-	<TextView 
-	    android:id="@+id/select_company_title"
-	    android:layout_height="wrap_content"
-	    android:layout_width="match_parent"
-	    android:text="晋江AAA公司执法记录"/>
-	
-	<include layout="@layout/enforce_record_header"/>
-	
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_enforcement"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-	<ListView 
-	    android:id="@+id/enforce_record_list"
-	    android:layout_width="match_parent"
-	    android:layout_height="0dp"
-	    android:layout_weight="1">
-	    
-	</ListView>
-    <Button
-        android:id="@+id/button_delete"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/delete"/>
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+		<LinearLayout 
+		    android:layout_height="match_parent"
+		    android:orientation="vertical"
+		    style="@style/sidebar">
+		     <TextView
+		         	style="@style/textTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/company_name" />
 
-</LinearLayout>
+                <EditText
+                    android:id="@+id/enforce_text_name"
+                    style="@style/editText"
+                    android:inputType="text" />
+                <TextView
+                    style="@style/textTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/company_type" />
+
+                <Spinner 
+                    style="@style/spinLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/enforce_spinner_company_type" />
+                
+                <TextView
+                    style="@style/textTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <Spinner
+                        style="@style/spinSmall"
+                        android:id="@+id/enforce_spinner_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <EditText
+                        android:id="@+id/enforce_text_day"
+                        style="@style/editTextSmall"
+                        android:inputType="number" 
+                        android:hint="天数"/>
+
+                </LinearLayout>
+                 <Button
+                     style="@style/searchButton"
+                    android:id="@+id/enforce_button_search" />
+		</LinearLayout>
+       
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <ListView
+                android:id="@+id/enforce_list_company_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>
