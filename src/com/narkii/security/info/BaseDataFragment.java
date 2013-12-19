@@ -84,8 +84,8 @@ public class BaseDataFragment extends Fragment implements LoaderCallbacks<Cursor
 		getLoaderManager().initLoader(Constants.SPINNER_AREA_ID, null, this);
 		getLoaderManager().restartLoader(Constants.SPINNER_ENTERPRISE_TYPE_ID, null, this);
 		
-		Log.d(TAG, "id:"+getActivity().getIntent().getLongExtra("id",0));
-		id=getActivity().getIntent().getLongExtra("id",0);
+		Log.d(TAG, "id:"+getArguments().getLong("enterpriseId",0));
+		id=getArguments().getLong("enterpriseId",0);
 		if(id==0){//增加信息
 			
 		}else{//查看信息

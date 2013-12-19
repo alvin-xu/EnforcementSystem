@@ -7,6 +7,7 @@ import com.narkii.security.common.MyFragmentPagerAdapter;
 import com.narkii.security.data.DbOperations;
 import com.narkii.security.data.InitDataBase;
 import com.narkii.security.data.EnforceSysContract.Document;
+import com.narkii.security.info.InformationFragment;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -15,6 +16,7 @@ import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Message;
@@ -33,19 +35,6 @@ public class MainActivity extends FragmentActivity implements TabListener{
 	private ViewPager viewPager;
 	private Fragment f1,f2,f3,f4;
 	
-//	public Fragment getFragment(int index){
-//		switch (index) {
-//		case 0:
-//			return f1;
-//		case 1:
-//			return f2;
-//		case 2:
-//			return f3;
-//		case 3:
-//			return f4;
-//		}
-//		return null;
-//	}
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -58,22 +47,9 @@ public class MainActivity extends FragmentActivity implements TabListener{
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		
-		super.onBackPressed();
+		Log.d(TAG, "support :"+getSupportFragmentManager().getBackStackEntryCount());
 		Log.d(TAG, "entry count:"+getFragmentManager().getBackStackEntryCount()+f2.getChildFragmentManager().getBackStackEntryCount());
-		if(f2.getChildFragmentManager().getBackStackEntryCount()==0)
-			finish();
-		else 
-			return;
-		
-		
-	}
-
-/*	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-		if(keyCode==KeyEvent.KEYCODE_BACK && getFragmentManager().getBackStackEntryCount()==1){
-			
+		if( getSupportFragmentManager().getBackStackEntryCount()==0){
 			AlertDialog.Builder builder=new AlertDialog.Builder(this);
 			builder.setTitle("确定要退出？")
 					.setMessage("\n请确认已保存相关信息后再退出！\n");
@@ -94,8 +70,11 @@ public class MainActivity extends FragmentActivity implements TabListener{
 			});
 			builder.create().show();
 		}
-		return super.onKeyDown(keyCode, event);
-	}*/
+		else 
+			super.onBackPressed();
+		
+		
+	}
 
 	@SuppressLint("NewApi")
 	@Override
@@ -119,11 +98,7 @@ public class MainActivity extends FragmentActivity implements TabListener{
 			@Override
 			public void onPageSelected(int position) {
 				// TODO Auto-generated method stub
-				actionBar.setSelectedNavigationItem(position);
-//				if(position==1)
-//				getSupportFragmentManager().beginTransaction()
-//				.replace(R.id.enforce_record, new EnforcementFragment())
-//				.commit();
+				actionBar.setSelectedNavigationItem(position);			
 			}
 			
 		});
@@ -158,16 +133,41 @@ public class MainActivity extends FragmentActivity implements TabListener{
 
 			case R.id.action_exchange://换证
 				Log.d(TAG, "click huanzheng");
-				getActionBar().setSelectedNavigationItem(1);
-				viewPager.setCurrentItem(1);
-//				((EnforcementFragment)f2).reLoadData(item.getItemId());
+				getActionBar().setSelectedNavigationItem(0);
+				viewPager.setCurrentItem(0);
+				break;
+			case R.id.action_logout://注销
+				logout();
 				break;
 			default:
 				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+	private void logout(){
+		AlertDialog.Builder builder=new AlertDialog.Builder(this);
+		builder.setTitle("确定要注销？")
+				.setMessage("\n请确认已保存相关信息后再注销！\n");
+		builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				//跳到登陆页
+				Intent i=new Intent(MainActivity.this, LoginActivity.class);
+				startActivity(i);
+				finish();
+			}
+		});
+		builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+			}
+		});
+		builder.create().show();
+	}
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		// TODO Auto-generated method stub
@@ -194,12 +194,13 @@ public class MainActivity extends FragmentActivity implements TabListener{
 			switch (arg0) {
 				case 0:
 					if(f1==null){
-						f1=new InformationFragment();
+						f1=new EnforcementContainer();
 					}
 					return f1;
+					
 				case 1:
 					if(f2==null){
-						f2=new EnforcementContainer();
+						f2=new InformationContainer();
 					}
 					return f2;
 				case 2:

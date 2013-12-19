@@ -1,9 +1,12 @@
-package com.narkii.security;
+package com.narkii.security.info;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.narkii.security.R;
+import com.narkii.security.R.array;
+import com.narkii.security.R.id;
+import com.narkii.security.R.layout;
 import com.narkii.security.common.Constants;
 import com.narkii.security.data.DbCursorLoader;
 import com.narkii.security.data.DbOperations;
@@ -12,7 +15,6 @@ import com.narkii.security.data.EnforceSysContract.Document;
 import com.narkii.security.data.EnforceSysContract.Enterprise;
 import com.narkii.security.data.EnforceSysContract.EnterpriseType;
 import com.narkii.security.data.EnforceSysContract.SafetyPermitType;
-import com.narkii.security.info.InformationDetailActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -103,8 +105,7 @@ public class InformationFragment extends Fragment implements
 				.findViewById(R.id.info_spin_company_type);
 		permitTypeSpin = (Spinner) view
 				.findViewById(R.id.info_spin_permission_type);
-		searchTypeSpin = (Spinner) view
-				.findViewById(R.id.info_spin_search_types);
+
 		certificateSituSpin = (Spinner) view
 				.findViewById(R.id.info_spin_certificate_situ);
 		timeSpin = (Spinner) view.findViewById(R.id.info_spin_time);
@@ -144,11 +145,11 @@ public class InformationFragment extends Fragment implements
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		certificateSituSpin.setAdapter(adapter);
 
-		adapter = ArrayAdapter.createFromResource(getActivity(),
+/*		adapter = ArrayAdapter.createFromResource(getActivity(),
 				R.array.spinner_search_type,
 				android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		searchTypeSpin.setAdapter(adapter);
+		searchTypeSpin.setAdapter(adapter);*/
 
 		adapter = ArrayAdapter.createFromResource(getActivity(),
 				R.array.spinner_time, android.R.layout.simple_spinner_item);
@@ -162,9 +163,17 @@ public class InformationFragment extends Fragment implements
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent infoIntent = new Intent(getActivity(),
-						InformationDetailActivity.class);
-				startActivity(infoIntent);
+				Log.d(TAG, "add button");
+				Fragment infoFragment=getFragmentManager().findFragmentByTag("info_detail_tag");
+				if(infoFragment==null){
+					Log.d(TAG, "new info Fragment");
+					infoFragment=new InfoDetailFragment();
+				}
+				getFragmentManager().beginTransaction()
+					.hide(getFragmentManager().findFragmentByTag("info_search_tag"))
+					.replace(R.id.information, infoFragment, "info_detail_tag")
+					.addToBackStack(null)
+					.commit();
 			}
 		});
 		deleteButton.setOnClickListener(new OnClickListener() {
@@ -221,8 +230,8 @@ public class InformationFragment extends Fragment implements
 
 				bundle.putInt("timeType", timeSpin.getSelectedItemPosition());
 				Log.d(TAG, "time spin:" + timeSpin.getSelectedItemPosition());
-				bundle.putInt("searchType",
-						searchTypeSpin.getSelectedItemPosition());
+/*				bundle.putInt("searchType",
+						searchTypeSpin.getSelectedItemPosition());*/
 				bundle.putInt("permitSitu",
 						certificateSituSpin.getSelectedItemPosition());
 
@@ -477,9 +486,25 @@ public class InformationFragment extends Fragment implements
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					Intent detailIntent=new Intent(getActivity(), InformationDetailActivity.class);
-					detailIntent.putExtra("id", (Long)holder.checkBox.getTag());
-					startActivity(detailIntent);
+					Fragment infoFragment=getFragmentManager().findFragmentByTag("info_detail_tag");
+					if(infoFragment==null){
+						Log.d(TAG, "new info Fragment");
+						infoFragment=new InfoDetailFragment();
+					}
+					Bundle bundle=new Bundle();
+					bundle.putLong("enterpriseId", (Long)holder.checkBox.getTag());
+					Log.d(TAG, "put param "+(Long)holder.checkBox.getTag());
+					infoFragment.setArguments(bundle);
+					
+					getFragmentManager().beginTransaction()
+						.hide(getFragmentManager().findFragmentByTag("info_search_tag"))
+						.replace(R.id.information, infoFragment, "info_detail_tag")
+						.addToBackStack(null)
+						.commit();
+//					Intent detailIntent=new Intent(getActivity(), InformationDetailActivity.class);
+//					detailIntent.putExtra("id", (Long)holder.checkBox.getTag());
+//					startActivity(detailIntent);
+					
 				}
 			});
 		}

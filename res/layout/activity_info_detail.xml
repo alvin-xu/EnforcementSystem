@@ -1,11 +1,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
-	<android.support.v4.view.ViewPager
+    android:orientation="horizontal" >
+    <LinearLayout 
+        android:layout_height="match_parent"
+        style="@style/sidebar"
+        android:orientation="vertical">
+        <TextView 
+            android:id="@+id/nav_base_data"
+            style="@style/infoNavBarText"
+            android:text="@string/base_data"/>
+         <TextView 
+            android:id="@+id/nav_secure_data"
+            style="@style/infoNavBarText"
+            android:text="@string/secure_data"/>
+          <TextView 
+            android:id="@+id/nav_license_info"
+            style="@style/infoNavBarText"
+            android:text="@string/license_info"/>
+           <TextView 
+            android:id="@+id/nav_record"
+            style="@style/infoNavBarText"
+            android:text="@string/record"/>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/info_detail_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<!--         <fragment 
+            android:id="@+id/info_base"
+            android:tag="info_base_tag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.narkii.security.info.BaseDataFragment"/> -->
+    </FrameLayout>
+        
+<!-- 	<android.support.v4.view.ViewPager
 	    android:id="@+id/pager_info"
       	android:layout_width="match_parent"
         android:layout_height="match_parent">
 	    
-	</android.support.v4.view.ViewPager>
+	</android.support.v4.view.ViewPager> -->
 </LinearLayout>

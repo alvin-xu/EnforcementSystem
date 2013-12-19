@@ -36,6 +36,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -47,14 +48,14 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 	private EditText fromDate,fromTime,toDate,toTime,
 					 officerNo1,officerNo2;
 	private EditText[] tests=new EditText[9];
-	
+	private ImageView sealImage;
 	private Spinner officerSpin1,officerSpin2;
 	private SimpleCursorAdapter officerAdapter;
 	
 	private DatePicker datePicker;
 	private long enterpriseId,recordId; //企业id，文书id
 	List<String> officersList=null;	//执法人员列表
-	
+	private boolean showSeal=false;
 	private Handler handler=new Handler(){
 
 		@Override
@@ -103,6 +104,7 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 	}
 	
 	private void initViews(){
+		sealImage=(ImageView) view.findViewById(R.id.paper_seal);
 		datePicker=(DatePicker) view.findViewById(R.id.inspect_date_sign);
 		
 		sealButton=(Button) view.findViewById(R.id.inspect_seal);
@@ -131,6 +133,19 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 		tests[8]=(EditText) view.findViewById(R.id.inspect_situ);
 	}
 	private void initListener(){
+		sealButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(!showSeal){
+					sealImage.setVisibility(View.VISIBLE);
+				}else{
+					sealImage.setVisibility(View.INVISIBLE);
+				}
+				showSeal=!showSeal;
+			}
+		});
 		fromDate.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -289,6 +304,11 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 					values.put(Document.COLUMN_CREATE_DATE, date);
 					Log.d(TAG, content.toString());
 				
+					if(showSeal){
+						values.put(Document.COLUMN_SEAL, "seal");
+					}else{
+						values.put(Document.COLUMN_SEAL, "notseal");
+					}
 					new Thread(new Runnable() {
 						
 						@Override
@@ -434,6 +454,13 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 					officerSpin2.setSelection(officersList.indexOf(data.getString(data.getColumnIndex(Document.COLUMN_OFFICER2))));
 				}else{
 					Log.d(TAG, "officer list is null");
+				}
+				//印章
+				String isSeal=data.getString(data.getColumnIndex(Document.COLUMN_SEAL));
+				Log.d(TAG, "is seal?:"+isSeal);
+				if(isSeal!=null && isSeal.equals("seal")){
+					sealImage.setVisibility(View.VISIBLE);
+					showSeal=true;
 				}
 			}
 		}

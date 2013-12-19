@@ -88,10 +88,9 @@ public class EnforceRecordFragment extends Fragment implements LoaderCallbacks<C
 				android.R.layout.simple_spinner_item, null,
 				new String[] { DocumentType.COLUMN_NAME },
 				new int[] { android.R.id.text1 });
-		paperAdapter
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		paperAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		paperSpin.setAdapter(paperAdapter);
-		
+	
 		initListener();
 		
 		bundleLog=getArguments();
@@ -123,6 +122,7 @@ public class EnforceRecordFragment extends Fragment implements LoaderCallbacks<C
 					int position, long id) {
 				// TODO Auto-generated method stub
 				Log.d(TAG, "select item"+position);
+				((TextView)view).setText("");
 				if(!isAddPaper) return ;
 				Fragment fragment=null;
 				switch (position) {

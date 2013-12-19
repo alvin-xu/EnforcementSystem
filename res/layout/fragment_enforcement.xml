@@ -13,53 +13,53 @@
 		    android:orientation="vertical"
 		    style="@style/sidebar">
 		     <TextView
-		         	style="@style/textTitle"
+		         	style="@style/sideTextTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/company_name" />
 
                 <EditText
                     android:id="@+id/enforce_text_name"
-                    style="@style/editText"
+                    style="@style/sideEditText"
                     android:inputType="text" />
                 <TextView
-                    style="@style/textTitle"
+                    style="@style/sideTextTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/company_type" />
 
                 <Spinner 
-                    style="@style/spinLarge"
+                    style="@style/sideSpinLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/enforce_spinner_company_type" />
                 
                 <TextView
-                    style="@style/textTitle"
+                    style="@style/sideTextTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/time" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                   android:layout_height="60dp"
                     android:orientation="horizontal" >
 
                     <Spinner
-                        style="@style/spinSmall"
+                        style="@style/sideSpinSmall"
                         android:id="@+id/enforce_spinner_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                     <EditText
                         android:id="@+id/enforce_text_day"
-                        style="@style/editTextSmall"
+                        style="@style/sideEditTextSmall"
                         android:inputType="number" 
                         android:hint="天数"/>
 
                 </LinearLayout>
                  <Button
-                     style="@style/searchButton"
+                     style="@style/sideSearchButton"
                     android:id="@+id/enforce_button_search" />
 		</LinearLayout>
        

@@ -70,7 +70,7 @@ public class SecureDataFragment extends Fragment implements LoaderCallbacks<Curs
 		getLoaderManager().initLoader(Constants.SPINNER_SAFETY_PERMIT_TYPE_ID, null, this);
 		getLoaderManager().restartLoader(Constants.SPINNER_VARITY_TYPE_ID, null, this);
 		
-		long id=getActivity().getIntent().getLongExtra("id",0);
+		long id=getArguments().getLong("enterpriseId",0);
 		if(id==0){
 			
 		}else{

@@ -1,121 +1,123 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
-    
-	<TableLayout
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        style="@style/sidebar"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/sideTextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/company_name" />
+
+        <EditText
+            android:id="@+id/info_text_name"
+            style="@style/sideEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+        <TextView
+            style="@style/sideTextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/company_type" />
+
+        <Spinner
+            android:id="@+id/info_spin_company_type"
+            style="@style/sideSpinLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/sideTextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/permission_type" />
+
+        <Spinner
+            android:id="@+id/info_spin_permission_type"
+            style="@style/sideSpinLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/sideTextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/info_certificate_situ" />
+
+        <Spinner
+            android:id="@+id/info_spin_certificate_situ"
+            style="@style/sideSpinLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/sideTextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal" >
+
+            <Spinner
+                android:id="@+id/info_spin_time"
+                style="@style/sideSpinSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/info_text_day"
+                style="@style/sideEditTextSmall"
+                android:hint="天数"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/info_button_search"
+            style="@style/sideSearchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:stretchColumns="1,3">
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/company_name"/>
-            <EditText 
-                android:id="@+id/info_text_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:layout_span="1"/>
-      
-            <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/company_type"/>
-            <Spinner 
-                android:id="@+id/info_spin_company_type"/>
-        </TableRow>
+        <LinearLayout
+            style="@style/infoActionBar"
+            android:orientation="horizontal" >
 
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/search_types"/>
-            <Spinner 
-                android:id="@+id/info_spin_search_types"/>
-    
-            <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/permission_type"/>
-            <Spinner 
-                android:id="@+id/info_spin_permission_type"/>
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/info_certificate_situ"/>
-            <Spinner 
-                android:id="@+id/info_spin_certificate_situ"/>
-       
-            <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time"/>
-            
-            <TableRow >
-                <Spinner
-                    android:layout_width="wrap_content"
-                	android:layout_height="wrap_content" 
-               		android:id="@+id/info_spin_time"
-               		android:layout_weight="1"/>
-                <EditText 
-	                android:id="@+id/info_text_day"
-	                android:layout_width="80dp"
-	                android:layout_height="wrap_content"
-	                android:inputType="number"/>
-                <TextView 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="天"/>
-            </TableRow>
-        </TableRow>
-        
-        <TableRow 
-             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-            <Button 
-                android:id="@+id/info_button_search"
-                android:text="@string/search"
-                android:layout_span="2"/>
-        </TableRow>
-    </TableLayout>
-    
-	<include layout="@layout/company_info_header"/>
+            <TextView
+                style="@style/infoActionTitleText"
+                android:text="管理操作" />
 
-	<ListView 
-	    android:id="@+id/info_list_company"
-	    android:layout_width="match_parent"
-	    android:layout_height="0dp"
-	    android:layout_weight="1"></ListView>
-	
-	<LinearLayout 
-	    android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:orientation="horizontal" >
-	    <Button 
-	        android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:layout_weight="1"
-	        android:id="@+id/info_button_add"
-	        android:text="@string/add"/>
-	    <Button 
-	        android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:layout_weight="1"
-	        android:id="@+id/info_button_delete"
-	        android:text="@string/delete"/>
-	</LinearLayout>
+            <Button
+                android:id="@+id/info_button_delete"
+                style="@style/infoActionButtonDelete" />
+
+            <Button
+                android:id="@+id/info_button_add"
+                style="@style/infoActionButtonAdd"/>
+        </LinearLayout>
+
+        <include layout="@layout/company_info_header" />
+
+        <ListView
+            android:id="@+id/info_list_company"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+        </ListView>
+    </LinearLayout>
+
 </LinearLayout>

@@ -5,21 +5,18 @@
     android:layout_gravity="top"
     android:padding="0dp"
     android:background="@drawable/paper_back" >
-	<RelativeLayout
-	    android:layout_width="930dp"
+
+    <ScrollView
+        android:layout_width="930dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|top"
         android:layout_margin="0dp"
-        android:background="@drawable/paper"
+        android:background="#FFFFFF"
         android:padding="0dp" >
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal|top" >
 
         <LinearLayout
             android:layout_width="800dp"
-            android:layout_height="wrap_content"
+            android:layout_height="1300dp"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical" >
 
@@ -139,6 +136,7 @@
 
                 <EditText
                     android:id="@+id/inspect_phone"
+                    android:inputType="phone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -307,7 +305,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine" />
 
-            <!--
+   
              <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -350,21 +348,32 @@
                 android:id="@+id/inspect_responser_sign"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-        </LinearLayout>-->
-			<TextView
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_gravity="right"
-	            android:text="安全生产监督管理部门（公章）" />
-            <DatePicker
-                android:id="@+id/inspect_date_sign"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:calendarViewShown="false" />
+        </LinearLayout>
+        	<FrameLayout 
+        	    android:layout_width="wrap_content"
+	            android:layout_height="400dp"
+	            android:layout_gravity="right">
+            	<ImageView 
+            	    android:id="@+id/paper_seal"
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="wrap_content"
+            	    android:layout_gravity="center"
+            	    android:src="@drawable/paper_seal"
+            	    android:visibility="invisible"/>
+				<TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="center"
+		            android:text="安全生产监督管理部门（公章）" />
+	            <DatePicker
+	                android:id="@+id/inspect_date_sign"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_gravity="bottom|center_horizontal"
+	                android:calendarViewShown="false" />
+            </FrameLayout>
         </LinearLayout>
     </ScrollView>
-</RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="75dp"

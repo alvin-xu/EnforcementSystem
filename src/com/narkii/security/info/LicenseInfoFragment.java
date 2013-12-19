@@ -162,7 +162,7 @@ public class LicenseInfoFragment extends Fragment implements LoaderCallbacks<Cur
 			}
 		});
 		
-		long id=getActivity().getIntent().getLongExtra("id", 0);
+		long id=getArguments().getLong("enterpriseId",0);
 		Bundle bundle=new Bundle();
 		bundle.putLong("id", id);
 		getLoaderManager().initLoader(Constants.PERMISSION_IMAGE_ID, bundle, this);
