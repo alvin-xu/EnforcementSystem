@@ -2,60 +2,72 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="65dp"
-    android:minHeight="65dp"
     android:gravity="center_vertical"
+    android:minHeight="65dp"
     android:orientation="horizontal" >
-	
-    <CheckBox 
-        android:id="@+id/checkbox"
-        style="@style/enforceCheckBox"
-        android:layout_width="50dp"
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:gravity="center"
-        android:layout_marginLeft="30dp"
-        android:layout_height="wrap_content"/>
+        android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/text_time"
-            style="@style/enforceTextItem"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/enforce_time_law"/>
+        <CheckBox
+            android:id="@+id/checkbox"
+            style="@style/enforceCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/text_paper"
-            style="@style/enforceTextItem"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/enforce_form_check"/>
+    <ImageView style="@style/infoVerticalDivider" />
 
-        <TextView
-            android:id="@+id/text_paper_no"
-            style="@style/enforceTextItem"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/enforce_paper"/>
-        
+    <TextView
+        android:id="@+id/text_time"
+        style="@style/enforceTextItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="@string/enforce_time_law" />
 
-        <TextView
-            android:id="@+id/text_officer"
-            style="@style/enforceTextItem"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="@string/enforce_officer" />
+    <TextView
+        android:id="@+id/text_paper"
+        style="@style/enforceTextItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="@string/enforce_form_check" />
 
-        <TextView
-            android:id="@+id/text_officer_id"
-            style="@style/enforceTextItem"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="@string/enforce_num_id"/>
+    <TextView
+        android:id="@+id/text_paper_no"
+        style="@style/enforceTextItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="@string/enforce_paper" />
 
-		
-        <TextView
-            android:id="@+id/text_remark"
-            style="@style/enforceTextItem"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:text="@string/remark"/>
-        
+    <TextView
+        android:id="@+id/text_officer"
+        style="@style/enforceTextItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/enforce_officer" />
+
+    <TextView
+        android:id="@+id/text_officer_id"
+        style="@style/enforceTextItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="@string/enforce_num_id" />
+
+    <TextView
+        android:id="@+id/text_remark"
+        style="@style/enforceTextItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="@string/remark" />
+
 </LinearLayout>

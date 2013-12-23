@@ -1,5 +1,8 @@
 package com.narkii.security.enforce;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,10 +17,15 @@ import com.narkii.security.data.EnforceSysContract.Document;
 import com.narkii.security.data.EnforceSysContract.Enterprise;
 import com.narkii.security.data.EnforceSysContract.Member;
 
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -28,6 +36,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
@@ -37,12 +46,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>{
 	public static final String TAG="InspectActivity";
-	private View view;
+	private View view,paperBack,paperContent;
 	private Button sealButton,saveButton,printButton;
 	
 	private EditText fromDate,fromTime,toDate,toTime,
@@ -104,6 +114,11 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 	}
 	
 	private void initViews(){
+		paperBack=view.findViewById(R.id.scroll_paper_back);
+		paperBack.setDrawingCacheEnabled(true);
+		paperContent=view.findViewById(R.id.linear_paper_content);
+		paperContent.setDrawingCacheEnabled(true);
+		
 		sealImage=(ImageView) view.findViewById(R.id.paper_seal);
 		datePicker=(DatePicker) view.findViewById(R.id.inspect_date_sign);
 		
@@ -133,6 +148,44 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 		tests[8]=(EditText) view.findViewById(R.id.inspect_situ);
 	}
 	private void initListener(){
+		printButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				paperContent.measure(  
+		                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),  
+		                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));  
+				paperContent.layout(0, 0, paperContent.getMeasuredWidth(),  
+						paperContent.getMeasuredHeight());  
+		  
+				paperContent.buildDrawingCache();
+				
+				Bitmap bitmap=paperContent.getDrawingCache();
+				File outputFile=new File(Environment.getExternalStorageDirectory()+"/Pictures/EnforcementSys/temp.jpg");
+				if(outputFile.exists()){
+					outputFile.delete();
+				}
+				try {
+					if(outputFile.createNewFile()){
+						FileOutputStream outputStream=new FileOutputStream(outputFile);
+						bitmap.compress(Bitmap.CompressFormat.JPEG,100, outputStream);
+						outputStream.flush();
+						outputStream.close();
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Intent intent=new Intent();
+				ComponentName component=new ComponentName("com.dynamixsoftware.printershare","com.dynamixsoftware.printershare.ActivityPrintPictures");
+				intent.setComponent(component);
+				intent.setAction("android.intent.action.VIEW");
+				intent.setType("image/jpg");
+				intent.setData(Uri.fromFile(outputFile));
+				startActivity(intent);
+			}
+		});
 		sealButton.setOnClickListener(new OnClickListener() {
 			
 			@Override

@@ -1,4 +1,19 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout 
+        style="@style/infoActionBar"
+        android:orientation="horizontal">
+        <TextView 
+            style="@style/infoActionTitleText"
+            android:text="管理操作"/>
+        <Button
+            android:id="@+id/info_button_save"
+            style="@style/infoActionButtonSave"/>
+    </LinearLayout>
+<ScrollView 
     android:id="@+id/scrollView1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
@@ -6,7 +21,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
+	<TextView 
+	    style="@style/infoModuleTitleText"
+	    android:text="基础信息"/>
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,21 +32,22 @@
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="65dp" 
+            android:minHeight="65dp" >
             <TextView 
-                android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+               style="@style/infoColumnName"
                 android:text="@string/company_name"/>
             <EditText 
+                style="@style/infoColumnValue"
                 android:id="@+id/text_company_name"
                 android:inputType="text"
                 android:layout_span="3"/>
             <TextView 
-                android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+                style="@style/infoColumnName"
                 android:text="@string/company_address"/>
             <EditText 
                 android:id="@+id/text_company_address"
+                style="@style/infoColumnValue"
                 android:inputType="text"
                 android:layout_span="3"/>
         </TableRow>
@@ -37,63 +55,76 @@
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="65dp" 
+            android:minHeight="65dp" >
            <TextView 
-               android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+               style="@style/infoColumnName"
                 android:text="@string/info_code_organization"/>
             <EditText 
                 android:id="@+id/text_code_organization"
+                style="@style/infoColumnValue"
                 android:inputType="text"/>
             <TextView 
-                android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+                style="@style/infoColumnName"
                 android:text="@string/info_num_file"/>
             <EditText 
                 android:id="@+id/text_num_file"
+                style="@style/infoColumnValue"
                 android:inputType="text"/>
             <TextView 
-                android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+                style="@style/infoColumnName"
                 android:text="@string/company_area"/>
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/info_column_value_selector">
             <Spinner 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/spinner_company_area"/>
+            </LinearLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="65dp" 
+            android:minHeight="65dp"  >
             
             <TextView 
-                android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+                style="@style/infoColumnName"
                 android:text="@string/type"/>
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/info_column_value_selector">
             <Spinner 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/spinner_type"/>
-            
+            </LinearLayout>
             <TextView 
-                android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+                style="@style/infoColumnName"
                 android:text="@string/phone"/>
             <EditText 
                 android:id="@+id/text_info_phone"
+                style="@style/infoColumnValue"
                 android:inputType="phone"/>
             
             <TextView 
-                android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+                style="@style/infoColumnName"
                 android:text="@string/fax"/>
             <EditText 
                 android:id="@+id/text_info_fax"
+                style="@style/infoColumnValue"
                 android:inputType="text"/>
             
             <TextView 
-                android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+                style="@style/infoColumnName"
                 android:text="@string/email"/>
             <EditText 
                 android:id="@+id/text_info_email"
+                style="@style/infoColumnValue"
                 android:inputType="textEmailAddress"/>
         </TableRow>
 
@@ -105,18 +136,19 @@
 	    android:orientation="vertical">
 	    <LinearLayout 
 	         android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-		    android:orientation="horizontal"
-		    android:animateLayoutChanges="true">
+	    	android:layout_height="75dp"
+		    android:orientation="horizontal">
 	        <TextView
-	            android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+	            style="@style/infoModuleTitleText"
+	            android:layout_width="0dp"
+	            android:layout_weight="1"
 	            android:text="@string/responsor"/>
 	        <Button 
 	            android:id="@+id/button_info_add_responser"
-	            android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
-	            android:text="新增主要负责人"/>
+	            android:background="@drawable/info_base_button_add_selector"
+	            android:layout_marginRight="20dp"
+	            android:layout_width="110dp" 
+	            android:layout_height="44dp"/>
 	    </LinearLayout>
 	    
 	</LinearLayout>
@@ -126,17 +158,19 @@
 	    android:orientation="vertical">
 	    <LinearLayout 
 	         android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
+	    	android:layout_height="75dp"
 		    android:orientation="horizontal">
 	        <TextView
-	            android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+	            style="@style/infoModuleTitleText"
+	            android:layout_width="0dp"
+	            android:layout_weight="1"
 	            android:text="@string/secure_manager"/>
 	        <Button 
 	            android:id="@+id/button_info_add_manager"
-	            android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
-	            android:text="新增安全管理员"/>
+	            android:background="@drawable/info_base_button_add_selector"
+	             android:layout_marginRight="20dp"
+	            android:layout_width="110dp" 
+	            android:layout_height="44dp"/>
 	    </LinearLayout>
 
 	</LinearLayout>
@@ -146,22 +180,31 @@
 	    android:orientation="vertical">
 
 	    <TextView 
-	        android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
+	        style="@style/infoModuleTitleText"
 	        android:text="@string/info_attribute_special"/>
-	
+		<ImageView style="@style/infoHorizontalDivider"/>
 	    <TableLayout 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content">
-	  		<TableRow >
+	  		<TableRow 
+	  		    android:layout_width="match_parent"
+	  		    android:layout_height="78dp" 
+	  		    android:gravity="center_vertical"
+	  		    android:minHeight="78dp" >
 	            <CheckBox 
 	                android:id="@+id/check_info_shutdown"
+	                style="@style/enforceCheckBox"
+	                android:layout_marginLeft="22dp"
 	                android:text="@string/info_shutdown"/>
 	             <CheckBox 
 	                android:id="@+id/check_info_rectify"
+	                style="@style/enforceCheckBox"
+	                android:layout_marginLeft="45dp"
 	                android:text="@string/info_rectify"/>
 	              <CheckBox 
 	                android:id="@+id/check_info_expend"
+	                style="@style/enforceCheckBox"
+	                android:layout_marginLeft="45dp"
 	                android:text="@string/info_expend"/>
 			</TableRow>
 	    </TableLayout>
@@ -171,3 +214,4 @@
 </LinearLayout>
 
 </ScrollView>
+</LinearLayout>

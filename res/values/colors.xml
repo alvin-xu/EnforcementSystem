@@ -3,4 +3,6 @@
     <color name="lightskyblue">#87CEFA</color>
     <color name="lightblue">#ADD8E6</color>
     <color name="lightsteelblue">#B0C4DE</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>

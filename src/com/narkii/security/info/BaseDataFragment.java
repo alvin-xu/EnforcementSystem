@@ -161,7 +161,7 @@ public class BaseDataFragment extends Fragment implements LoaderCallbacks<Cursor
 				// TODO Auto-generated method stub
 				//删除对应数据
 				Log.d(TAG, "delete person");
-				parent.removeView((View)v.getParent());
+				parent.removeView((View)v.getParent().getParent());
 			}
 		});
 		personViews.add(subView);

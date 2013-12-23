@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <stroke 
+        android:width="1dp"
+        android:color="@color/lightsteelblue"/>
+    <!-- 显示留空solid属性能够使得控件的背景色保持透明 或者说不改变 -->
+    <solid/>
+</shape>

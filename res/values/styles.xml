@@ -120,14 +120,16 @@
     <style name="enfoceTextHeader">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#4b5055</item>
-        <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
     </style>
     <style name="enforceTextItem">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#000000</item>
-        <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
     </style>
     <style name="enforceCheckBox" parent="@android:style/Widget.Holo.Light.CompoundButton.CheckBox">
         <item name="android:button">@drawable/enforce_checkbox</item>
@@ -138,7 +140,19 @@
         <item name="android:layout_height">50dp</item>
         <item name="android:layout_marginLeft">20dp</item>
     </style>
-    
+    <style name="paperDivider">
+        <item name="android:background">@drawable/line_black</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">2dp</item>
+    </style>
+    <style name="paperTextValue" parent="@android:style/Widget.Holo.Light.EditText">
+        <item name="android:background">@drawable/paper_text_value_shape</item>
+    </style>
+    <style name="paperLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+    </style>
     <!-- 企业信息 -->
     <style name="infoNavBarText" parent="@android:style/Widget.Holo.Light.TextView">
         <item name="android:layout_width">match_parent</item>
@@ -150,8 +164,8 @@
         <item name="android:textSize">24sp</item>
     </style>
     <style name="infoActionBar">
-        <item name="android:background">@color/lightsteelblue</item>
-        <item name="android:layout_height">80dp</item>
+        <item name="android:background">@drawable/action_bar</item>
+        <item name="android:layout_height">94dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center_vertical</item>
     </style>
@@ -176,5 +190,49 @@
         <item name="android:layout_height">50dp</item>
         <item name="android:layout_marginRight">16dp</item>
         <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    <style name="infoActionButtonSave" parent="@android:style/Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/info_button_save_selector</item>
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    <style name="infoVerticalDivider">
+        <item name="android:background">@drawable/line</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">65dp</item>
+    </style>
+    <style name="infoHorizontalDivider">
+        <item name="android:background">@drawable/line</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="infoModuleTitleText" parent="@android:style/Widget.Holo.Light.TextView">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#6D737F</item>
+        <item name="android:layout_marginLeft">23dp</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <style name="infoColumnName" parent="@android:style/Widget.Holo.Light.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@drawable/info_column_name_shape</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">10dp</item>  
+        <item name="android:paddingRight">10dp</item>  
+    </style>
+    <style name="infoColumnValue" parent="@android:style/Widget.Holo.Light.EditText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@drawable/info_column_value_selector</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">left|center_vertical</item> 
+        <item name="android:paddingLeft">10dp</item>  
     </style>
 </resources>

@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="top"
-    android:padding="0dp"
-    android:background="@drawable/paper_back" >
+    android:background="@drawable/paper_back"
+    android:padding="0dp" >
 
     <ScrollView
+        android:id="@+id/scroll_paper_back"
         android:layout_width="930dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|top"
@@ -14,366 +15,368 @@
         android:background="#FFFFFF"
         android:padding="0dp" >
 
-        <LinearLayout
-            android:layout_width="800dp"
-            android:layout_height="1300dp"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:id="@+id/linear_paper_content"
+                android:layout_width="800dp"
+                android:layout_height="1130dp"
                 android:layout_gravity="center_horizontal"
-                android:textSize="28sp"
-                android:text="@string/enforce_paper_title" />
+                android:background="#FFFFFF"
+                android:minHeight="1130dp"
+                android:orientation="vertical" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="24sp"
-                android:text="@string/enforce_paper_inspect" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
+                <com.narkii.security.common.SongTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tab_space" />
-
-                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/enforce_paper_title"
+                    android:textSize="28sp" 
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="5dp"/>
+                
+				<ImageView style="@style/paperDivider"/>
+				<ImageView style="@style/paperDivider"/>
+				
+                <com.narkii.security.common.SongTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="文书编号：" />
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/enforce_paper_inspect"
+                    android:textSize="24sp" 
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"/>
 
-                <EditText
-                    android:id="@+id/inspect_file_no"
+                <LinearLayout
+                    style="@style/paperLine"
+                    android:orientation="horizontal" >
+
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:text="文书编号：" />
+
+                    <EditText
+                        android:id="@+id/inspect_file_no"
+                        style="@style/paperTextValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/paperLine"
+                    android:orientation="horizontal" >
+
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:text="被检查单位：" />
+
+                    <EditText
+                        android:id="@+id/inspect_company_name"
+                        style="@style/paperTextValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/paperLine"
+                    android:orientation="horizontal" >
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:text="地址：" />
+
+                    <EditText
+                        android:id="@+id/inspect_address"
+                        style="@style/paperTextValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                   style="@style/paperLine"
+                    android:orientation="horizontal" >
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:text="法定代表人（负责人）：" />
+
+                    <EditText
+                        android:id="@+id/inspect_responser"
+                        style="@style/paperTextValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="职务：" />
+
+                    <EditText
+                        android:id="@+id/inspect_job"
+                        style="@style/paperTextValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="联系电话：" />
+
+                    <EditText
+                        android:id="@+id/inspect_phone"
+                        style="@style/paperTextValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:inputType="phone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/paperLine"
+                    android:orientation="horizontal" >
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:text="检查场所：" />
+
+                    <EditText
+                        android:id="@+id/inspect_location"
+                        style="@style/paperTextValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/paperLine"
+                    android:orientation="horizontal" >
+                    
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:text="检查时间：" />
+
+                    <EditText
+                        android:id="@+id/inspect_date_from"
+                        style="@style/paperTextValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false" />
+
+                    <EditText
+                        android:id="@+id/inspect_time_from"
+                        style="@style/paperTextValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false" />
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="至" />
+
+                    <EditText
+                        android:id="@+id/inspect_date_to"
+                        style="@style/paperTextValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false" />
+
+                    <EditText
+                        android:id="@+id/inspect_time_to"
+                        style="@style/paperTextValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/paperLine"
+                    android:orientation="horizontal" >
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:text="我们是" />
+
+                    <EditText
+                        android:id="@+id/inspect_city"
+                        style="@style/paperTextValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="晋江市" />
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="安全生产监督管理局执法人员" />
+
+                    <Spinner
+                        android:id="@+id/inspect_lawer1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <Spinner
+                        android:id="@+id/inspect_lawer2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="，" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/paperLine"
+                    android:orientation="horizontal" >
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="证件号码为" />
+
+                    <EditText
+                        android:id="@+id/inspect_id1"
+                        style="@style/paperTextValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false" />
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="、" />
+
+                    <EditText
+                        android:id="@+id/inspect_id2"
+                        style="@style/paperTextValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false" />
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="，这是我们的证件（出示证件），现依法" />
+                </LinearLayout>
+
+                <com.narkii.security.common.SongTextView
+                    style="@style/paperLine"
+                    android:text="对你单位进行现场检查，请予以配合。" />
+
+                <com.narkii.security.common.SongTextView
+                    style="@style/paperLine"
+                    android:layout_marginLeft="40dp"
+                    android:text="检查情况：" />
+
+                <com.narkii.security.common.LinedEditText
+                    android:id="@+id/inspect_situ"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:lines="5"
+                    android:lineSpacingExtra="20dp"
+                    android:inputType="textMultiLine"/>
+
+                <LinearLayout
+                    style="@style/paperLine"
+                    android:orientation="horizontal" >
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:text="检查人员签名：" />
+
+                    <EditText
+                        android:id="@+id/inspect_sign1"
+                        style="@style/paperTextValue"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"/>
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="、" />
+
+                    <EditText
+                        android:id="@+id/inspect_sign2"
+                        style="@style/paperTextValue"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                   style="@style/paperLine"
+                    android:orientation="horizontal" >
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40dp"
+                        android:text="被检查单位现场负责人（签名）：" />
+
+                    <EditText
+                        android:id="@+id/inspect_responser_sign"
+                        style="@style/paperTextValue"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_margin="0dp"
+                    android:padding="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:layout_gravity="right" >
+
+                    <ImageView
+                        android:id="@+id/paper_seal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:src="@drawable/paper_seal"
+                        android:visibility="invisible" />
+
+                    <com.narkii.security.common.SongTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:text="安全生产监督管理部门（公章）" />
+
+                    <DatePicker
+                        android:id="@+id/inspect_date_sign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:calendarViewShown="false" />
+                </FrameLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tab_space" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="被检查单位：" />
-
-                <EditText
-                    android:id="@+id/inspect_company_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tab_space" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="地址：" />
-
-                <EditText
-                    android:id="@+id/inspect_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tab_space" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="法定代表人（负责人）：" />
-
-                <EditText
-                    android:id="@+id/inspect_responser"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="职务：" />
-
-                <EditText
-                    android:id="@+id/inspect_job"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="联系电话：" />
-
-                <EditText
-                    android:id="@+id/inspect_phone"
-                    android:inputType="phone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tab_space" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="检查场所：" />
-
-                <EditText
-                    android:id="@+id/inspect_location"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tab_space" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="检查时间：" />
-
-                <EditText
-                    android:id="@+id/inspect_date_from"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:editable="false" />
-
-                <EditText
-                    android:id="@+id/inspect_time_from"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:editable="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="至" />
-
-                <EditText
-                    android:id="@+id/inspect_date_to"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:editable="false" />
-
-                <EditText
-                    android:id="@+id/inspect_time_to"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:editable="false" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tab_space" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="我们是" />
-
-                <EditText
-                    android:id="@+id/inspect_city"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="晋江市" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="安全生产监督管理局执法人员" />
-
-                <Spinner
-                    android:id="@+id/inspect_lawer1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <Spinner
-                    android:id="@+id/inspect_lawer2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="，" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="证件号码为" />
-
-                <EditText
-                    android:id="@+id/inspect_id1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:editable="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="、" />
-
-                <EditText
-                    android:id="@+id/inspect_id2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:editable="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="，这是我们的证件（出示证件），现依法" />
-            </LinearLayout>
-			<TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="对你单位进行现场检查，请予以配合。" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="检查情况：" />
-
-            <EditText
-                android:id="@+id/inspect_situ"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine" />
-
-   
-             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="检查人员签名：" />
-
-            <EditText
-                android:id="@+id/inspect_sign1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="、" />
-
-            <EditText
-                android:id="@+id/inspect_sign2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="被检查单位现场负责人（签名）：" />
-
-            <EditText
-                android:id="@+id/inspect_responser_sign"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        	<FrameLayout 
-        	    android:layout_width="wrap_content"
-	            android:layout_height="400dp"
-	            android:layout_gravity="right">
-            	<ImageView 
-            	    android:id="@+id/paper_seal"
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="wrap_content"
-            	    android:layout_gravity="center"
-            	    android:src="@drawable/paper_seal"
-            	    android:visibility="invisible"/>
-				<TextView
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_gravity="center"
-		            android:text="安全生产监督管理部门（公章）" />
-	            <DatePicker
-	                android:id="@+id/inspect_date_sign"
-	                android:layout_width="wrap_content"
-	                android:layout_height="wrap_content"
-	                android:layout_gravity="bottom|center_horizontal"
-	                android:calendarViewShown="false" />
-            </FrameLayout>
-        </LinearLayout>
     </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="75dp"

@@ -62,7 +62,7 @@
     <string name="company_serial">序号</string>
     <string name="company_area">所属区域</string>
     <string name="company_address">地址</string>
-    <string name="responsor">主要负责人</string>
+    <string name="responsor">负责人</string>
     <string name="secure_manager">安全管理员</string>
     <string name="phone">电话</string>
     <string name="valid_date">有效日期</string>

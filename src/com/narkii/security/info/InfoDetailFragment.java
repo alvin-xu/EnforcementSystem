@@ -2,7 +2,6 @@ package com.narkii.security.info;
 
 import com.narkii.security.R;
 
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
@@ -78,7 +77,7 @@ public class InfoDetailFragment extends Fragment{
 					}
 				
 					Fragment fragment=getFragmentManager().findFragmentByTag(tags[(Integer)v.getTag()]);
-					if(fragment!=null){
+					if(fragment!=null && fragment.isAdded()){
 						Log.d(TAG, "show the fragment tag:"+tags[(Integer)v.getTag()]+" hide tag: "+tags[currentViewId]);
 						getFragmentManager().beginTransaction()
 							.hide(getFragmentManager().findFragmentByTag(tags[currentViewId]))

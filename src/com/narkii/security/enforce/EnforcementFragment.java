@@ -154,9 +154,9 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 				getFragmentManager().beginTransaction()
 						.hide(getFragmentManager().findFragmentByTag("enforce_search_tag"))
 						.replace(R.id.enforce_record, fragment,"enforce_record_tag")
-						.addToBackStack("search_to_record")
+						.addToBackStack(null)
 						.commit();
-				Log.d(TAG, "entry count:"+getFragmentManager().getBackStackEntryCount());
+				Log.d(TAG, "entry count:"+getChildFragmentManager().getBackStackEntryCount());
 			}
 
 		});

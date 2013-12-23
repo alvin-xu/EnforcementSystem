@@ -111,7 +111,7 @@
         </LinearLayout>
 
         <include layout="@layout/company_info_header" />
-
+		<ImageView style="@style/infoHorizontalDivider"/>
         <ListView
             android:id="@+id/info_list_company"
             android:layout_width="match_parent"

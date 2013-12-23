@@ -1,13 +1,10 @@
 package com.narkii.security;
 
-import java.util.List;
 
 import com.narkii.security.common.Constants;
 import com.narkii.security.common.MyFragmentPagerAdapter;
 import com.narkii.security.data.DbOperations;
 import com.narkii.security.data.InitDataBase;
-import com.narkii.security.data.EnforceSysContract.Document;
-import com.narkii.security.info.InformationFragment;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -19,13 +16,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -34,7 +29,7 @@ public class MainActivity extends FragmentActivity implements TabListener{
 	public static final String TAG="MainActivity";
 	private ViewPager viewPager;
 	private Fragment f1,f2,f3,f4;
-	
+	private int currentPager=0;
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -49,7 +44,15 @@ public class MainActivity extends FragmentActivity implements TabListener{
 		// TODO Auto-generated method stub
 		Log.d(TAG, "support :"+getSupportFragmentManager().getBackStackEntryCount());
 		Log.d(TAG, "entry count:"+getFragmentManager().getBackStackEntryCount()+f2.getChildFragmentManager().getBackStackEntryCount());
-		if( getSupportFragmentManager().getBackStackEntryCount()==0){
+		boolean isPopFragment=false;
+		if(currentPager==0){
+			isPopFragment = ((EnforcementContainer)f1).popFragment();
+		}else if(currentPager==1){
+			isPopFragment = ((InformationContainer)f2).popFragment();
+		}
+		Log.d(TAG, "is pop fragemnt :"+isPopFragment);
+		
+		if(!isPopFragment){
 			AlertDialog.Builder builder=new AlertDialog.Builder(this);
 			builder.setTitle("确定要退出？")
 					.setMessage("\n请确认已保存相关信息后再退出！\n");
@@ -70,10 +73,6 @@ public class MainActivity extends FragmentActivity implements TabListener{
 			});
 			builder.create().show();
 		}
-		else 
-			super.onBackPressed();
-		
-		
 	}
 
 	@SuppressLint("NewApi")
@@ -98,7 +97,8 @@ public class MainActivity extends FragmentActivity implements TabListener{
 			@Override
 			public void onPageSelected(int position) {
 				// TODO Auto-generated method stub
-				actionBar.setSelectedNavigationItem(position);			
+				actionBar.setSelectedNavigationItem(position);		
+				currentPager=position;
 			}
 			
 		});

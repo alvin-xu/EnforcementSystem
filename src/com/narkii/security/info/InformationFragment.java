@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.narkii.security.R;
-import com.narkii.security.R.array;
-import com.narkii.security.R.id;
-import com.narkii.security.R.layout;
 import com.narkii.security.common.Constants;
 import com.narkii.security.data.DbCursorLoader;
 import com.narkii.security.data.DbOperations;
@@ -18,7 +15,6 @@ import com.narkii.security.data.EnforceSysContract.SafetyPermitType;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.os.Bundle;
@@ -169,6 +165,8 @@ public class InformationFragment extends Fragment implements
 					Log.d(TAG, "new info Fragment");
 					infoFragment=new InfoDetailFragment();
 				}
+				Bundle bundle=new Bundle();
+				infoFragment.setArguments(bundle);
 				getFragmentManager().beginTransaction()
 					.hide(getFragmentManager().findFragmentByTag("info_search_tag"))
 					.replace(R.id.information, infoFragment, "info_detail_tag")
