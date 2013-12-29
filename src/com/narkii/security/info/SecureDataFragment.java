@@ -122,20 +122,20 @@ public class SecureDataFragment extends Fragment implements LoaderCallbacks<Curs
 		final DbOperations operations=DbOperations.getInstance(getActivity());
 		
 		if(id==Constants.ENTERPRISE_INFO_ID){
-			final long rowId=bundle.getLong("id");
-			cursorLoader=new DbCursorLoader(getActivity()) {
-				
-				@Override
-				public Cursor getDbCursor() {
-					// TODO Auto-generated method stub
-					String columns[] = { Enterprise.COLUMN_FK_SAFETY_PERMIT_TYPE,
-							Enterprise.COLUMN_SITUATION,
-							Enterprise.COLUMN_SAFETY_PERMIT_NUM,
-							Enterprise.COLUMN_ISSUE_DATE, Enterprise.COLUMN_VALID_DATE,
-							Enterprise.COLUMN_SCOPE };
-					return operations.query(Enterprise.TABLE_NAME, columns, Enterprise._ID+"=?", new String[]{""+rowId});
-				}
-			};
+//			final long rowId=bundle.getLong("id");
+//			cursorLoader=new DbCursorLoader(getActivity()) {
+//				
+//				@Override
+//				public Cursor getDbCursor() {
+//					// TODO Auto-generated method stub
+//					String columns[] = { Enterprise.COLUMN_FK_SAFETY_PERMIT_TYPE,
+//							Enterprise.COLUMN_SITUATION,
+//							Enterprise.COLUMN_SAFETY_PERMIT_NUM,
+//							Enterprise.COLUMN_ISSUE_DATE, Enterprise.COLUMN_VALID_DATE,
+//							Enterprise.COLUMN_SCOPE };
+//					return operations.query(Enterprise.TABLE_NAME, columns, Enterprise._ID+"=?", new String[]{""+rowId});
+//				}
+//			};
 			
 		}else if(id==Constants.FILING_ID){
 			final long rowId=bundle.getLong("id");
@@ -173,15 +173,15 @@ public class SecureDataFragment extends Fragment implements LoaderCallbacks<Curs
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 		// TODO Auto-generated method stub
 		if(loader.getId()==Constants.ENTERPRISE_INFO_ID){
-			if(cursor.getCount()==1){
-				cursor.moveToFirst();
-				safeTypeSpinner.setSelection(cursor.getInt(cursor.getColumnIndex(Enterprise.COLUMN_FK_SAFETY_PERMIT_TYPE))-1);
-				certificateSpinner.setSelection(cursor.getInt(cursor.getColumnIndex(Enterprise.COLUMN_SITUATION)));
-				code.setText(cursor.getString(cursor.getColumnIndex(Enterprise.COLUMN_SAFETY_PERMIT_NUM)));
-				issueDate.setText(cursor.getString(cursor.getColumnIndex(Enterprise.COLUMN_ISSUE_DATE)));
-				validDate.setText(cursor.getString(cursor.getColumnIndex(Enterprise.COLUMN_VALID_DATE)));
-				scope.setText(cursor.getString(cursor.getColumnIndex(Enterprise.COLUMN_SCOPE)));
-			}
+//			if(cursor.getCount()==1){
+//				cursor.moveToFirst();
+//				safeTypeSpinner.setSelection(cursor.getInt(cursor.getColumnIndex(Enterprise.COLUMN_FK_SAFETY_PERMIT_TYPE))-1);
+//				certificateSpinner.setSelection(cursor.getInt(cursor.getColumnIndex(Enterprise.COLUMN_SITUATION)));
+//				code.setText(cursor.getString(cursor.getColumnIndex(Enterprise.COLUMN_SAFETY_PERMIT_NUM)));
+//				issueDate.setText(cursor.getString(cursor.getColumnIndex(Enterprise.COLUMN_ISSUE_DATE)));
+//				validDate.setText(cursor.getString(cursor.getColumnIndex(Enterprise.COLUMN_VALID_DATE)));
+//				scope.setText(cursor.getString(cursor.getColumnIndex(Enterprise.COLUMN_SCOPE)));
+//			}
 		}else if(loader.getId()==Constants.FILING_ID){
 			if(cursor.getCount()==1){
 				cursor.moveToFirst();

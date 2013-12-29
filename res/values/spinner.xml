@@ -23,9 +23,8 @@
         <item>吊销</item>
     </string-array>
     <string-array name="spinner_time">
-        <item>整改到期</item>
+        <item>责令整改</item>
         <item>许可到期</item>
-        <item>责令整改中</item>
     </string-array>
     <string-array name="spinner_law_search">
         <item>全部</item>

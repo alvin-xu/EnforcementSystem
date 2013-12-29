@@ -47,16 +47,17 @@ public  class InitDataBase {
 		operations.insert(EnterpriseType.TABLE_NAME, values);
 		
 		//安全许可证类型
-		values=new ContentValues[6];
-		String[] types2={"生产","成品油","剧毒品","批发","零售","使用"};
-		for(int i=0;i<6;i++){
+		
+		String[] types2={"全部","生产","成品油","剧毒品","批发","零售","使用"};
+		values=new ContentValues[types2.length];
+		for(int i=0;i<types2.length;i++){
 			values[i]=new ContentValues(1);
 			values[i].put(SafetyPermitType.COLUMN_NAME, types2[i]);
 		}
 		operations.insert(SafetyPermitType.TABLE_NAME, values);
 		
 		//区域表测试数据
-		String[] types3={"青阳街道","梅岭街道","西园街道","罗山街道","新塘街道","灵源街道","安海镇","磁灶镇","陈埭镇","东石镇","深沪镇","金井镇","池店镇","内坑镇","龙湖镇","永和镇","英林镇","紫帽镇","西滨镇"};
+		String[] types3={"全部","青阳街道","梅岭街道","西园街道","罗山街道","新塘街道","灵源街道","安海镇","磁灶镇","陈埭镇","东石镇","深沪镇","金井镇","池店镇","内坑镇","龙湖镇","永和镇","英林镇","紫帽镇","西滨镇"};
 		values=new ContentValues[types3.length];
 		for(int i=0;i<types3.length;i++){
 			values[i]=new ContentValues(1);
@@ -80,7 +81,7 @@ public  class InitDataBase {
 		initEnterpriseDocuments(context);
 		initMember(context);
 		
-		String[] names={"证件1","证件2","证件3","证件4","证件5","证件6","证件7","证件8","证件9"};
+/*		String[] names={"证件1","证件2","证件3","证件4","证件5","证件6","证件7","证件8","证件9"};
 		String[] images={"/storage/sdcard0/Pictures/EnforcementSys/IMG_20131123_113604.jpg",
 				Environment.getExternalStorageDirectory().toString()+"/Pictures/EnforcementSys/IMG_20131123_155059.jpg",
 				Environment.getExternalStorageDirectory().toString()+"/Pictures/EnforcementSys/IMG_20131123_155247.jpg",
@@ -100,7 +101,7 @@ public  class InitDataBase {
 			values[i].put(Permission.COLUMN_CERTIFICATE_NAME, names[i]);
 			values[i].put(Permission.COLUMN_URL, images[i]);
 		}
-		operations.insert(Permission.TABLE_NAME, values);
+		operations.insert(Permission.TABLE_NAME, values);*/
 		
 		Editor editor=preferences.edit();
 		editor.putBoolean("isFirstIn", false);
@@ -109,10 +110,10 @@ public  class InitDataBase {
 	
 	/**企业信息表测试数据*/
 	public  static void initEnterpriseData(Context context){
-		String [][] data={{"AAA企业","00001","x00001","111111","福建省泉州市晋江市青阳街道1号","1","1","3","18030087654","fax8888","7686546@qq.com","","1","safe765567","经营范围","2011-5-3","2014-03-06","1",null,"文号89688","1","张三分","李四强二","18765434567","19087654678","2011-3-4",null,null,null},
-				{"BBB企业","00002","x00002","222222","福建省泉州市晋江市青阳街道2号","1","2","3","15330087654","fax7777","216806546@qq.com","","2","safe765567","经营范围","2011-5-3","2014-03-07","2",null,"文号89688","1","刘三分","王四强二","18765434567","19087654678","2011-3-4",null,null,null},
-				{"CCC企业","00003","x00003","333333","福建省泉州市晋江市安海镇3号","7","3","3","18098087654","fax58888","00686546@qq.com","","3","safe765567","经营范围","2011-5-3","2014-04-05","3",null,"文号89688","1","陈三分田","李强二","18765434567","19087654678","2011-3-4",null,null,null},
-				{"DDD企业","00004","x00004","444444","福建省泉州市晋江市青阳街道4号","1","4","3","18030080004","fax809888","7686546@qq.com","","4","safe765567","经营范围","2011-5-3","2013-12-01","1",null,"文号89688","1","三分","强二","18765434567","19087654678","2011-3-4",null,null,null}
+		String [][] data={{"AAA企业","00001","x00001","111111","福建省泉州市晋江市青阳街道1号","2","1","3","18030087654","fax8888","7686546@qq.com","","文号89688","1","张三分","李四强二","18765434567","19087654678","2011-3-4",null,null,null},
+				{"BBB企业","00002","x00002","222222","福建省泉州市晋江市青阳街道2号","2","2","3","15330087654","fax7777","216806546@qq.com","","文号89688","1","刘三分","王四强二","18765434567","19087654678","2011-3-4",null,null,null},
+				{"CCC企业","00003","x00003","333333","福建省泉州市晋江市安海镇3号","7","3","3","18098087654","fax58888","00686546@qq.com","","文号89688","1","陈三分田","李强二","18765434567","19087654678","2011-3-4",null,null,null},
+				{"DDD企业","00004","x00004","444444","福建省泉州市晋江市青阳街道4号","3","4","3","18030080004","fax809888","7686546@qq.com","","文号89688","1","三分","强二","18765434567","19087654678","2011-3-4",null,null,null}
 		};
 		ContentValues[] values=new ContentValues[data.length];
 		for(int i=0;i<data.length;i++){
@@ -129,9 +130,10 @@ public  class InitDataBase {
 	 * @param context
 	 */
 	public static void initFilingData(Context context){
-		String [][] data={{"1","等级1","晋江市安监局","no11111","2012-10-23","2013-12-20","1","品种","流向","no1111","2012-10-23","2013-12-20","no11111","品种","100t","等级2","2012-10-23","2012-10-24","预案名称1","no1111","2012-11-24","v1","2012-9-2","2012-10-1"},
-				{"2","等级1","晋江市安监局","no22222","2012-10-23","2013-12-20","2","品种","流向","no1111","2012-10-23","2013-12-20","no11111","品种","100t","等级2","2012-10-23","2012-10-24","预案名称1","no1111","2012-11-24","v1","2012-9-2","2012-10-1"},
-				{"3","等级1","晋江市安监局","no33333","2012-10-23","2013-12-20","3","品种","流向","no1111","2012-10-23","2013-12-20","no11111","品种","100t","等级2","2012-10-23","2012-10-24","预案名称1","no1111","2012-11-24","v1","2012-9-2","2012-10-1"}
+		String [][] data={{"1","等级1","晋江市安监局","no11111","2012-10-23","2013-12-20","1","品种","流向","no1111","2012-10-23","2013-12-20","no11111","品种","100t","等级2","2012-10-23","2012-10-24","预案名称1","no1111","2012-11-24","v1","2012-9-2","2012-10-1","1","safe765567","经营范围","2011-5-3","2014-03-06","1",null},
+				{"2","等级1","晋江市安监局","no22222","2012-10-23","2013-12-20","2","品种","流向","no1111","2012-10-23","2013-12-20","no11111","品种","100t","等级2","2012-10-23","2012-10-24","预案名称1","no1111","2012-11-24","v1","2012-9-2","2012-10-1","2","safe765567","经营范围","2011-5-3","2014-03-07","2",null},
+				{"3","等级1","晋江市安监局","no33333","2012-10-23","2013-12-20","3","品种","流向","no1111","2012-10-23","2013-12-20","no11111","品种","100t","等级2","2012-10-23","2012-10-24","预案名称1","no1111","2012-11-24","v1","2012-9-2","2012-10-1","3","safe765567","经营范围","2011-5-3","2014-04-05","3",null},
+				{"4","等级1","晋江市安监局","no44444","2012-10-23","2013-12-20","3","品种","流向","no1111","2012-10-23","2013-12-20","no11111","品种","100t","等级2","2012-10-23","2012-10-24","预案名称1","no1111","2012-11-24","v1","2012-9-2","2012-10-1","4","safe765567","经营范围","2011-5-3","2013-12-01","1",null}
 		};
 		ContentValues[] values=new ContentValues[data.length];
 		for(int i=0;i<data.length;i++){
@@ -161,10 +163,10 @@ public  class InitDataBase {
 		for(int i=0;i<data.length;i++){
 			values[i]=new ContentValues(data[i].length);
 			for(int j=0;j<data[i].length;j++)
-				values[i].put(EnterprisePersion.COLUMNS[j], data[i][j]);
+				values[i].put(EnterprisePerson.COLUMNS[j], data[i][j]);
 		}
 		DbOperations operations=DbOperations.getInstance(context);
-		operations.insert(EnterprisePersion.TABLE_NAME, values);
+		operations.insert(EnterprisePerson.TABLE_NAME, values);
 	}
 	
 	/**

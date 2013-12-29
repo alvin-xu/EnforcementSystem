@@ -31,6 +31,6 @@ public class SongTextView extends TextView{
 		if(tf==null)
 			tf=Typeface.createFromAsset(getContext().getAssets(), "fsong_gb2312.ttf");
 		setTypeface(tf);
-		
+		getPaint().setFakeBoldText(true);
 	}
 }

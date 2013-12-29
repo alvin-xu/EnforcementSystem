@@ -1,15 +1,22 @@
 package com.narkii.security.info;
 
+import java.io.FileNotFoundException;
+
 import com.narkii.security.R;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,15 +29,24 @@ public class ImageShowDialog extends DialogFragment{
 	public static final String TAG="ImageShowDialog";
 	
 	Bitmap bitmap;
-	Matrix matrix;
+//	Matrix matrix;
 	View view;
 	Button b1,b2;
 	ImageView imageView;
 
-	public ImageShowDialog(Bitmap bitmap) {
+	public ImageShowDialog(String path,Context context) {
 		super();
-		this.bitmap = Bitmap.createBitmap(bitmap);
-		matrix=new Matrix();
+		Log.d(TAG, "image show dialog:"+path);
+		try {
+//			如下调用会报nullpointer，因为构造函数中还没有上下文。
+//			ContentResolver cr=getActivity().getContentResolver();
+			ContentResolver cr=context.getContentResolver();
+			this.bitmap = BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(path)));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		matrix=new Matrix();
 	}
 
 
@@ -53,9 +69,10 @@ public class ImageShowDialog extends DialogFragment{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					matrix.postRotate(90);
-					Bitmap reBitmap=Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-					imageView.setImageBitmap(reBitmap);
+					Matrix matrix=new Matrix();
+					matrix.postRotate(90);//顺时针
+//					Bitmap reBitmap=Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+					imageView.setImageMatrix(matrix);
 				}
 			});
 			b2.setOnClickListener(new OnClickListener() {
@@ -63,12 +80,12 @@ public class ImageShowDialog extends DialogFragment{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
+					Matrix matrix=new Matrix();
 					matrix.postRotate(-90);
-					Bitmap reBitmap=Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-					imageView.setImageBitmap(reBitmap);
+//					Bitmap reBitmap=Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+					imageView.setImageMatrix(matrix);
 				}
 			});
-	        
 	        
 	        
 	        builder.setView(view)
@@ -82,8 +99,12 @@ public class ImageShowDialog extends DialogFragment{
 	                       // FIRE ZE MISSILES!
 	                   }
 	               });
-	               
+	        Dialog dialog=builder.create();
+//	        WindowManager.LayoutParams lp=dialog.getWindow().getAttributes();
+//			lp.width=bitmap.getWidth();
+//			lp.height=bitmap.getHeight();
+//			dialog.getWindow().setAttributes(lp);
 	        // Create the AlertDialog object and return it
-	        return builder.create();
+	        return dialog;
 	    }
 }

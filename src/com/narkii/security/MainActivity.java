@@ -130,11 +130,14 @@ public class MainActivity extends FragmentActivity implements TabListener{
 
 		switch (item.getItemId()) {
 			case R.id.action_review://复查
-
-			case R.id.action_exchange://换证
-				Log.d(TAG, "click huanzheng");
 				getActionBar().setSelectedNavigationItem(0);
 				viewPager.setCurrentItem(0);
+				break;
+			case R.id.action_exchange://换证
+			case R.id.action_rectify://重点整改
+				Log.d(TAG, "click huanzheng");
+				getActionBar().setSelectedNavigationItem(1);
+				viewPager.setCurrentItem(1);
 				break;
 			case R.id.action_logout://注销
 				logout();

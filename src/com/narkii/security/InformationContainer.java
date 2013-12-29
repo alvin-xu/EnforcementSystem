@@ -2,6 +2,7 @@ package com.narkii.security;
 
 import com.narkii.security.info.InformationFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,7 +18,17 @@ public class InformationContainer extends Fragment{
 		// TODO Auto-generated method stub
 		return inflater.inflate(R.layout.container_information, null);
 	}
-	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		Log.d(TAG, "on activity result");
+		Fragment fragment=getChildFragmentManager().findFragmentByTag("info_search_tag");
+		if(fragment!=null){
+			Log.d(TAG, "find the child fragment");
+			fragment.onActivityResult(requestCode, resultCode, data);
+		}
+	}
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

@@ -31,7 +31,7 @@
     <string name="sync">同步</string>
     <string name="logout">注销</string>
     <string name="about">关于</string>
-
+	<string name="rectify">重点整改</string>
 
     
     <!-- common -->
@@ -51,6 +51,7 @@
     <string name="cancel">取消</string>
     <string name="print">打印</string>
     <string name="time">时间</string>
+    <string name="time_limit">时限</string>
     <string name="gender">性别</string>
     <string name="male">男</string>
     <string name="female">女</string>
@@ -60,7 +61,7 @@
     <string name="select">选择</string>
     <string name="company_name">企业名称</string>
     <string name="company_serial">序号</string>
-    <string name="company_area">所属区域</string>
+    <string name="company_area">镇别</string>
     <string name="company_address">地址</string>
     <string name="responsor">负责人</string>
     <string name="secure_manager">安全管理员</string>

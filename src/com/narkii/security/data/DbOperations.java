@@ -75,7 +75,7 @@ public class DbOperations {
 	 * @param table
 	 * @param where
 	 * @param args	二维参数数组
-	 * @return
+	 * @return 删除的记录数
 	 */
 	public int delete(String table,String where,String[][] args){
 		int count=0;

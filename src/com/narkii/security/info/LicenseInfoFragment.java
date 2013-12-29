@@ -1,7 +1,5 @@
 package com.narkii.security.info;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import com.narkii.security.R;
@@ -20,7 +18,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -67,7 +64,7 @@ public class LicenseInfoFragment extends Fragment implements LoaderCallbacks<Cur
 			switch (msg.what) {
 			case Constants.INSERT_UPLOADED_OK_MSG:
 				Log.d(TAG, "handle msg");
-				long id=getActivity().getIntent().getLongExtra("id", 0);
+				long id=getArguments().getLong("enterpriseId",0);
 				Bundle bundle=new Bundle();
 				bundle.putLong("id", id);
 				getLoaderManager().restartLoader(Constants.PERMISSION_IMAGE_ID, bundle, LicenseInfoFragment.this);
@@ -112,8 +109,10 @@ public class LicenseInfoFragment extends Fragment implements LoaderCallbacks<Cur
 				// TODO Auto-generated method stub
 				Intent i=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 				fileUri = MediaFileStorage.getOutputMediaFileUri(MediaFileStorage.MEDIA_TYPE_IMAGE);
+				Log.d(TAG, fileUri.toString());
+				Log.d(TAG, fileUri.getPath());
 				i.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-				startActivityForResult(i, Constants.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+				getParentFragment().startActivityForResult(i, Constants.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 			}
 		});
 		
@@ -126,7 +125,8 @@ public class LicenseInfoFragment extends Fragment implements LoaderCallbacks<Cur
 				intent.setType("*/*");	//如何调用文件管理器呢？此处只是图片("image/*")
 				intent.setAction(Intent.ACTION_GET_CONTENT);
 				intent.addCategory(Intent.CATEGORY_OPENABLE);
-				startActivityForResult(intent, Constants.CONTENT_GET_ACTIVITY_REQUEST_CODE);
+				//因为使用了嵌入的Fragment（子Fragment），所以必须调用父Fragment的该方法，才能使得父Fragment得到Result，从而手动传给本Fragment
+				getParentFragment().startActivityForResult(intent, Constants.CONTENT_GET_ACTIVITY_REQUEST_CODE);
 			}
 		});
 		uploadButton.setOnClickListener(new OnClickListener() {
@@ -143,8 +143,10 @@ public class LicenseInfoFragment extends Fragment implements LoaderCallbacks<Cur
 							// TODO Auto-generated method stub
 							DbOperations operations=DbOperations.getInstance(getActivity());
 							ContentValues values=new ContentValues();
-							values.put(Permission.COLUMN_FK_ENTERPRISE_ID, getActivity().getIntent().getLongExtra("id", 0));
-							values.put(Permission.COLUMN_URL, fileUri.toString());
+							values.put(Permission.COLUMN_FK_ENTERPRISE_ID, getArguments().getLong("enterpriseId",0));
+							Log.d(TAG, "storage file:"+fileUri.toString());
+							Log.d(TAG, "storage file:"+fileUri.getPath());
+							values.put(Permission.COLUMN_URL, fileUri.toString()); 
 							values.put(Permission.COLUMN_CERTIFICATE_NAME, fileName.getText().toString());
 							if(isImage)	values.put(Permission.COLUMN_TYPE, 1);
 							else 	values.put(Permission.COLUMN_TYPE, 2);
@@ -172,10 +174,10 @@ public class LicenseInfoFragment extends Fragment implements LoaderCallbacks<Cur
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		Log.d("app", "on activity result");
+		Log.d(TAG, "on activity result");
 		//相机结果回调
 		if(requestCode==Constants.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
-			Log.d("app", "on activity result camera");
+			Log.d(TAG, "on activity result camera");
 			if(resultCode== Activity.RESULT_OK){
 				//为什么data.getData()会报NullPointer？
 //				 Toast.makeText(this, "Image saved to:\n" +
@@ -199,19 +201,23 @@ public class LicenseInfoFragment extends Fragment implements LoaderCallbacks<Cur
 		if(requestCode==Constants.CONTENT_GET_ACTIVITY_REQUEST_CODE){
 			//如何实现文件和图片的区分？？？
 			if(resultCode== Activity.RESULT_OK){
-				isImage=true;
 				fileUri=data.getData();
-				Log.d("app", "uri= "+fileUri.getPath());
-				Log.d("app", "uri2= "+fileUri);
-				 ContentResolver cr= getActivity().getContentResolver();
-				 try {
-					preBitmap=BitmapFactory.decodeStream(cr.openInputStream(fileUri));
-					previewImage.setImageBitmap(preBitmap);
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				String path=fileUri.getPath();
+				Log.d(TAG, "uri= "+fileUri.getPath());
+				Log.d(TAG, "uri2= "+fileUri);
+				if(path.contains("/external/images/media")){//图片
+					isImage=true;
+					ContentResolver cr= getActivity().getContentResolver();
+					 try {
+						preBitmap=BitmapFactory.decodeStream(cr.openInputStream(fileUri));
+						previewImage.setImageBitmap(preBitmap);
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else{//其他类型，当做文件处理
+					isImage=false;
 				}
-				 
 			}else if(resultCode== Activity.RESULT_CANCELED){
 				Toast.makeText(getActivity(), "cancel file select", Toast.LENGTH_LONG).show();
 			}else{
@@ -221,6 +227,7 @@ public class LicenseInfoFragment extends Fragment implements LoaderCallbacks<Cur
 	}
 	
 	class GridViewAdapter extends CursorAdapter{
+		ContentResolver cr=getActivity().getContentResolver();
 		class ViewHolder{
 			TextView title;
 			ImageView image;
@@ -252,26 +259,30 @@ public class LicenseInfoFragment extends Fragment implements LoaderCallbacks<Cur
 			final ViewHolder holder=(ViewHolder) view.getTag();
 			holder.title.setText(cursor.getString(holder.titleIndex));
 			String path=cursor.getString(holder.imageIndex);
-			FileInputStream file = null;
-			try {
-				file = new FileInputStream(new File(path));
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 			BitmapFactory.Options options=new BitmapFactory.Options();
 			options.inJustDecodeBounds=false;
 			options.inSampleSize=10;
 			
-			Bitmap bitmap=BitmapFactory.decodeStream(file, null, options);
+			Bitmap bitmap=null;
+			try {
+				bitmap = BitmapFactory.decodeStream(cr.openInputStream(Uri.parse(path)), null, options);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if(bitmap==null)	Log.d(TAG, "bitmap is null :"+path);
+			
 			holder.image.setImageBitmap(bitmap);
+			Log.d(TAG,path);
+			holder.image.setTag(path);
+			
 			holder.image.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					ImageShowDialog dialog=new ImageShowDialog(((BitmapDrawable)holder.image.getDrawable()).getBitmap());
+					ImageShowDialog dialog=new ImageShowDialog((String) v.getTag(),getActivity());
 					dialog.show(getActivity().getFragmentManager(), "show_image");
 				}
 			});

@@ -34,16 +34,7 @@ public final class EnforceSysContract {
 		public static final String COLUMN_FAX = "fax";
 		public static final String COLUMN_EMAIL = "email";
 		public static final String COLUMN_REMARK = "remark";
-		/**
-		 * 类型（外键，关联Tb_Safetypermits_Types）
-		 */
-		public static final String COLUMN_FK_SAFETY_PERMIT_TYPE = "fk_safetypermit_type";
-		public static final String COLUMN_SAFETY_PERMIT_NUM = "safetypermit_num";
-		public static final String COLUMN_SCOPE = "scope";
-		public static final String COLUMN_ISSUE_DATE = "issue_date";
-		public static final String COLUMN_VALID_DATE = "valid_date";
-		public static final String COLUMN_SITUATION = "situation";
-		public static final String COLUMN_SITUATION_DATE = "situation_date";
+		
 		public static final String COLUMN_DOC_NUM = "doc_num";
 		public static final String COLUMN_USER_TYPE = "user_type";
 		public static final String COLUMN_CHARGE = "charge";
@@ -59,10 +50,7 @@ public final class EnforceSysContract {
 				COLUMN_ORGANIZATION_CODE, COLUMN_FILE_NUMBER,
 				COLUMN_BUSSINESS_LICENSE, COLUMN_ADDRESS, COLUMN_AREA,
 				COLUMN_FK_ENTERPRISE_TYPE, COLUMN_SPECIAL, COLUMN_TELEPHONE,
-				COLUMN_FAX, COLUMN_EMAIL, COLUMN_REMARK,
-				COLUMN_FK_SAFETY_PERMIT_TYPE, COLUMN_SAFETY_PERMIT_NUM,
-				COLUMN_SCOPE, COLUMN_ISSUE_DATE, COLUMN_VALID_DATE,
-				COLUMN_SITUATION, COLUMN_SITUATION_DATE, COLUMN_DOC_NUM,
+				COLUMN_FAX, COLUMN_EMAIL, COLUMN_REMARK, COLUMN_DOC_NUM,
 				COLUMN_USER_TYPE, COLUMN_CHARGE, COLUMN_SAFE_ADMIN,
 				COLUMN_CHARGE_PHONE, COLUMN_SAFE_ADMIN_PHONE,
 				COLUMN_CREATE_DATE, COLUMN_CREATE_BY, COLUMN_UPDATE_DATE,
@@ -81,7 +69,7 @@ public final class EnforceSysContract {
 		/**
 		 * 企业Id（关联Tb_Enterprise）
 		 */
-		public static final String COLUMN_FK_ENTERPRISE_ID = "enterprise_id";
+		public static final String COLUMN_FK_ENTERPRISE_ID = "filing_enterprise_id";
 
 		/**
 		 * 安全生产标准化-等级
@@ -178,7 +166,26 @@ public final class EnforceSysContract {
 		 * 应急预案备案-评审日期
 		 */
 		public static final String COLUMN_F4_REVIEW_DATE = "f4_review_date";
-
+		
+		/**
+		 * 类型（外键，关联Tb_Safetypermits_Types）
+		 */
+		public static final String COLUMN_FK_SAFETY_PERMIT_TYPE = "fk_safetypermit_type";
+		/**
+		 * 安全许可证编号
+		 */
+		public static final String COLUMN_SAFETY_PERMIT_NUM = "safetypermit_num";
+		/**经营范围*/
+		public static final String COLUMN_SCOPE = "scope";
+		/**发证日期*/
+		public static final String COLUMN_ISSUE_DATE = "issue_date";
+		/**有效日期*/
+		public static final String COLUMN_VALID_DATE = "safe_valid_date";
+		/**持证情况*/
+		public static final String COLUMN_SITUATION = "situation";
+		/**注销和吊销日期*/
+		public static final String COLUMN_SITUATION_DATE = "situation_date";
+		
 		public static final String COLUMNS[] = { COLUMN_FK_ENTERPRISE_ID,
 				COLUMN_F1_RANK, COLUMN_F1_ISSUE_ORGAN, COLUMN_F1_NUM,
 				COLUMN_F1_ISSUE_DATE, COLUMN_F1_VALID_DATE,
@@ -188,7 +195,10 @@ public final class EnforceSysContract {
 				COLUMN_F3_RANK, COLUMN_F3_EVALUATE_DATE, COLUMN_F3_NET_DATE,
 				COLUMN_F4_PLAN_NAME, COLUMN_F4_RECORD_NUM,
 				COLUMN_F4_RELEASE_DATE, COLUMN_F4_VERSION_NUM,
-				COLUMN_F4_FILING_DATE, COLUMN_F4_REVIEW_DATE };
+				COLUMN_F4_FILING_DATE, COLUMN_F4_REVIEW_DATE ,
+				COLUMN_FK_SAFETY_PERMIT_TYPE, COLUMN_SAFETY_PERMIT_NUM,
+				COLUMN_SCOPE, COLUMN_ISSUE_DATE, COLUMN_VALID_DATE,
+				COLUMN_SITUATION, COLUMN_SITUATION_DATE};
 	}
 
 	/**
@@ -350,7 +360,7 @@ public final class EnforceSysContract {
 		 * Type:INTEGER
 		 * </P>
 		 */
-		public static final String COLUMN_FK_ENTERPRISE_ID = "enterprise_id";
+		public static final String COLUMN_FK_ENTERPRISE_ID = "perm_enterprise_id";
 		/**
 		 * 证件名称
 		 */
@@ -372,8 +382,8 @@ public final class EnforceSysContract {
 	/**
 	 * 企业负责人/管理员表
 	 */
-	public static final class EnterprisePersion implements BaseColumns {
-		private EnterprisePersion() {
+	public static final class EnterprisePerson implements BaseColumns {
+		private EnterprisePerson() {
 		};
 
 		public static final String TABLE_NAME = "Tb_EnterprisePersion";
@@ -383,7 +393,7 @@ public final class EnforceSysContract {
 		 * Type:INTEGER
 		 * </P>
 		 */
-		public static final String COLUMN_FK_ENTERPRISE_ID = "enterprise_id";
+		public static final String COLUMN_FK_ENTERPRISE_ID = "ep_enterprise_id";
 		/**
 		 * 姓名
 		 */
@@ -465,7 +475,7 @@ public final class EnforceSysContract {
 		 * Type:INTEGER
 		 * </P>
 		 */
-		public static final String COLUMN_FK_ENTERPRISE_ID = "enterprise_id";
+		public static final String COLUMN_FK_ENTERPRISE_ID = "document_enterprise_id";
 		/**
 		 * 文书内容id，外键
 		 * <P>
@@ -482,14 +492,6 @@ public final class EnforceSysContract {
 		 * 文书编号
 		 */
 		public static final String COLUMN_NO = "num";
-/*		*//**
-		 * 执法人员1，关联Member表外键
-		 *//*
-		public static final String COLUMN_FK_MEMBER_ID1="member_id1";
-		*//**
-		 * 执法人员2，关联Member表外键
-		 *//*
-		public static final String COLUMN_FK_MEMBER_ID2="member_id2";*/
 		/**
 		 * 执法人员1
 		 */

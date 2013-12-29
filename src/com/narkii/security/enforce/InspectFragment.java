@@ -3,11 +3,8 @@ package com.narkii.security.enforce;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import com.narkii.security.R;
 import com.narkii.security.common.Constants;
@@ -17,6 +14,7 @@ import com.narkii.security.data.EnforceSysContract.Document;
 import com.narkii.security.data.EnforceSysContract.Enterprise;
 import com.narkii.security.data.EnforceSysContract.Member;
 
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
@@ -29,21 +27,18 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,8 +47,9 @@ import android.widget.Toast;
 
 public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>{
 	public static final String TAG="InspectActivity";
-	private View view,paperBack,paperContent;
-	private Button sealButton,saveButton,printButton;
+	private View view,paperContent;
+	LinearLayout paperContainer;
+	private Button sealButton,saveButton,printButton,attachButton,detachButton;
 	
 	private EditText fromDate,fromTime,toDate,toTime,
 					 officerNo1,officerNo2;
@@ -62,10 +58,11 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 	private Spinner officerSpin1,officerSpin2;
 	private SimpleCursorAdapter officerAdapter;
 	
-	private DatePicker datePicker;
+	private EditText datePicker;
 	private long enterpriseId,recordId; //企业id，文书id
 	List<String> officersList=null;	//执法人员列表
 	private boolean showSeal=false;
+	@SuppressLint("HandlerLeak")
 	private Handler handler=new Handler(){
 
 		@Override
@@ -114,17 +111,19 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 	}
 	
 	private void initViews(){
-		paperBack=view.findViewById(R.id.scroll_paper_back);
-		paperBack.setDrawingCacheEnabled(true);
+		paperContainer=(LinearLayout) view.findViewById(R.id.paper_container);
+		
 		paperContent=view.findViewById(R.id.linear_paper_content);
 		paperContent.setDrawingCacheEnabled(true);
 		
 		sealImage=(ImageView) view.findViewById(R.id.paper_seal);
-		datePicker=(DatePicker) view.findViewById(R.id.inspect_date_sign);
+		datePicker=(EditText) view.findViewById(R.id.inspect_date_sign);
 		
 		sealButton=(Button) view.findViewById(R.id.inspect_seal);
 		saveButton=(Button) view.findViewById(R.id.inspect_save);
 		printButton=(Button) view.findViewById(R.id.inspect_print);
+		attachButton=(Button) view.findViewById(R.id.button_attach);
+		detachButton=(Button) view.findViewById(R.id.button_detach);
 		
 		officerSpin1=(Spinner) view.findViewById(R.id.inspect_lawer1);
 		officerSpin2=(Spinner) view.findViewById(R.id.inspect_lawer2);
@@ -148,28 +147,58 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 		tests[8]=(EditText) view.findViewById(R.id.inspect_situ);
 	}
 	private void initListener(){
+		attachButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.d(TAG, "on button attach");
+				
+				LayoutInflater inflater=LayoutInflater.from(getActivity());
+				LinearLayout attach=(LinearLayout) inflater.inflate(R.layout.paper_inspect_attach, null);
+				if(attach==null)	Log.d(TAG, "attach null");
+				
+				//必须动态设置margin才能生效，在xml中定义无效？？？！！！
+				LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(930, LinearLayout.LayoutParams.WRAP_CONTENT);
+				lp.setMargins(0, 0, 0, 20);
+				attach.setLayoutParams(lp);
+				
+				paperContainer.addView(attach);
+			}
+		});
+		detachButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if(paperContainer.getChildCount()>1){
+					//数据删除
+					paperContainer.removeViewAt(paperContainer.getChildCount()-1);
+				}
+			}
+		});
 		printButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				paperContent.measure(  
-		                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),  
-		                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));  
-				paperContent.layout(0, 0, paperContent.getMeasuredWidth(),  
-						paperContent.getMeasuredHeight());  
-		  
-				paperContent.buildDrawingCache();
+//				paperContent.measure(  
+//		                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),  
+//		                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));  
+//				paperContent.layout(0, 0, paperContent.getMeasuredWidth(),  
+//						paperContent.getMeasuredHeight());  
+//		  
+//				paperContent.buildDrawingCache();
 				
 				Bitmap bitmap=paperContent.getDrawingCache();
-				File outputFile=new File(Environment.getExternalStorageDirectory()+"/Pictures/EnforcementSys/temp.jpg");
+				File outputFile=new File(Environment.getExternalStorageDirectory()+"/Pictures/EnforcementSys/temp.png");
 				if(outputFile.exists()){
 					outputFile.delete();
 				}
 				try {
 					if(outputFile.createNewFile()){
 						FileOutputStream outputStream=new FileOutputStream(outputFile);
-						bitmap.compress(Bitmap.CompressFormat.JPEG,100, outputStream);
+						bitmap.compress(Bitmap.CompressFormat.PNG,100, outputStream);
 						outputStream.flush();
 						outputStream.close();
 					}
@@ -179,10 +208,12 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 				}
 				Intent intent=new Intent();
 				ComponentName component=new ComponentName("com.dynamixsoftware.printershare","com.dynamixsoftware.printershare.ActivityPrintPictures");
+				//				ComponentName component=new ComponentName("com.dynamixsoftware.printhand.premium","com.dynamixsoftware.printhand.ui.ActivityPreviewImages");
 				intent.setComponent(component);
 				intent.setAction("android.intent.action.VIEW");
-				intent.setType("image/jpg");
+				intent.setType("image/png");
 				intent.setData(Uri.fromFile(outputFile));
+//				intent.setData(Uri.fromFile(new File("/storage/sdcard0/Pictures/EnforcementSys/temp")));
 				startActivity(intent);
 			}
 		});
@@ -199,13 +230,35 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 				showSeal=!showSeal;
 			}
 		});
+		datePicker.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.d(TAG, "click");
+				DatePickerFragment dialog=new DatePickerFragment((EditText) v,DatePickerFragment.CHINA_FORMAT);
+				dialog.show(getFragmentManager(), "date picker");
+			}
+		});
+		datePicker.setOnFocusChangeListener(new OnFocusChangeListener() {
+			
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				// TODO Auto-generated method stub
+				Log.d(TAG, "on focus change "+hasFocus);
+				if(hasFocus){
+					DatePickerFragment dialog=new DatePickerFragment((EditText) v,DatePickerFragment.CHINA_FORMAT);
+					dialog.show(getFragmentManager(), "date picker");
+				}
+			}
+		});
 		fromDate.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Log.d(TAG, "click");
-				DatePickerFragment dialog=new DatePickerFragment((EditText) v);
+				DatePickerFragment dialog=new DatePickerFragment((EditText) v,DatePickerFragment.NUMBER_FORMAT);
 				dialog.show(getActivity().getSupportFragmentManager(), "date picker");
 			}
 		});
@@ -225,7 +278,7 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Log.d(TAG, "click");
-				DatePickerFragment dialog=new DatePickerFragment((EditText) v);
+				DatePickerFragment dialog=new DatePickerFragment((EditText) v,DatePickerFragment.NUMBER_FORMAT);
 				dialog.show(getFragmentManager(), "date picker");
 			}
 		});
@@ -246,7 +299,7 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 				// TODO Auto-generated method stub
 				Log.d(TAG, "on focus change "+hasFocus);
 				if(hasFocus){
-					DatePickerFragment dialog=new DatePickerFragment((EditText) v);
+					DatePickerFragment dialog=new DatePickerFragment((EditText) v,DatePickerFragment.NUMBER_FORMAT);
 					dialog.show(getFragmentManager(), "date picker");
 				}
 			}
@@ -270,7 +323,7 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 				// TODO Auto-generated method stub
 				Log.d(TAG, "on focus change "+hasFocus);
 				if(hasFocus){
-					DatePickerFragment dialog=new DatePickerFragment((EditText) v);
+					DatePickerFragment dialog=new DatePickerFragment((EditText) v,DatePickerFragment.NUMBER_FORMAT);
 					dialog.show(getFragmentManager(), "date picker");
 				}
 			}
@@ -351,9 +404,12 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 					values.put(Document.COLUMN_CERTIFICATE_NO1, officerNo1.getText().toString());
 					values.put(Document.COLUMN_CERTIFICATE_NO2, officerNo2.getText().toString());
 					values.put(Document.COLUMN_CONTENT, content.toString());
-					SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
-					String date=dateFormat.format(new Date(datePicker.getCalendarView().getDate()));
-					Log.d(TAG, "date:"+date);
+					
+//					SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+//					String date=dateFormat.format(new Date(datePicker.getCalendarView().getDate()));
+					String date=(String) datePicker.getTag();
+					Log.d(TAG, "!!!!!date:"+date);
+					
 					values.put(Document.COLUMN_CREATE_DATE, date);
 					Log.d(TAG, content.toString());
 				
@@ -497,11 +553,13 @@ public class InspectFragment extends Fragment implements LoaderCallbacks<Cursor>
 				}
 				
 				String[] date=data.getString(data.getColumnIndex(Document.COLUMN_CREATE_DATE)).split("-");
-				Integer[] date2=new Integer[3];
-				date2[0]=Integer.parseInt(date[0]);
-				date2[1]=Integer.parseInt(date[1])-1;
-				date2[2]=Integer.parseInt(date[2]);
-				datePicker.init(date2[0], date2[1], date2[2], null);
+//				Integer[] date2=new Integer[3];
+//				date2[0]=Integer.parseInt(date[0]);
+//				date2[1]=Integer.parseInt(date[1]);
+//				date2[2]=Integer.parseInt(date[2]);
+//				datePicker.init(date2[0], date2[1], date2[2], null);
+				datePicker.setText(date[0]+" 年  "+date[1]+" 月  "+date[2]+" 日  ");
+				datePicker.setTag(data.getString(data.getColumnIndex(Document.COLUMN_CREATE_DATE)));
 				if(officersList!=null){
 					officerSpin1.setSelection(officersList.indexOf(data.getString(data.getColumnIndex(Document.COLUMN_OFFICER1))));
 					officerSpin2.setSelection(officersList.indexOf(data.getString(data.getColumnIndex(Document.COLUMN_OFFICER2))));

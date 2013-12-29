@@ -8,61 +8,75 @@
         android:layout_height="match_parent"
         android:baselineAligned="false"
         android:orientation="horizontal" >
-		<LinearLayout 
-		    android:layout_height="match_parent"
-		    android:orientation="vertical"
-		    style="@style/sidebar">
-		     <TextView
-		         	style="@style/sideTextTitle"
+
+        <LinearLayout
+            style="@style/sidebar"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                style="@style/sideTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name" />
+
+            <EditText
+                android:id="@+id/enforce_text_name"
+                style="@style/sideEditText"
+                android:inputType="text" />
+
+            <TextView
+                style="@style/sideTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/company_area" />
+
+            <Spinner
+                android:id="@+id/enforce_spin_company_area"
+                style="@style/sideSpinLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/sideTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/company_type" />
+
+            <Spinner
+                android:id="@+id/enforce_spinner_company_type"
+                style="@style/sideSpinLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                style="@style/sideTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_limit" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:id="@+id/enforce_spinner_time"
+                    style="@style/sideSpinSmall"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/company_name" />
+                    android:layout_height="wrap_content" />
 
                 <EditText
-                    android:id="@+id/enforce_text_name"
-                    style="@style/sideEditText"
-                    android:inputType="text" />
-                <TextView
-                    style="@style/sideTextTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/company_type" />
+                    android:id="@+id/enforce_text_day"
+                    style="@style/sideEditTextSmall"
+                    android:hint="天数"
+                    android:inputType="number" />
+            </LinearLayout>
 
-                <Spinner 
-                    style="@style/sideSpinLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/enforce_spinner_company_type" />
-                
-                <TextView
-                    style="@style/sideTextTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/time" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                   android:layout_height="60dp"
-                    android:orientation="horizontal" >
-
-                    <Spinner
-                        style="@style/sideSpinSmall"
-                        android:id="@+id/enforce_spinner_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <EditText
-                        android:id="@+id/enforce_text_day"
-                        style="@style/sideEditTextSmall"
-                        android:inputType="number" 
-                        android:hint="天数"/>
-
-                </LinearLayout>
-                 <Button
-                     style="@style/sideSearchButton"
-                    android:id="@+id/enforce_button_search" />
-		</LinearLayout>
-       
+            <Button
+                android:id="@+id/enforce_button_search"
+                style="@style/sideSearchButton" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"

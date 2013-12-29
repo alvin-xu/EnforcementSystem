@@ -1,320 +1,448 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollView1"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
-	<LinearLayout 
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical" >
-	
-	    <LinearLayout 
-		    android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-		    android:orientation="vertical">
-	    	<TextView 
-	    	    android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
-	            android:text="@string/info_license_secure_permission"/>
-	    	<TableLayout
-	    	    android:layout_width="fill_parent"
-	    	    android:layout_height="wrap_content"
-	    	    android:stretchColumns="1,3,5">
-	    	    <TableRow >
-	    	        <TextView 
-			    	    android:layout_width="wrap_content" 
-			            android:layout_height="wrap_content"
-			            android:text="@string/type"/>
-	    	        <Spinner 
-	    	            android:id="@+id/spinner_secure_type"/>
-	    	        <TextView 
-			    	    android:layout_width="wrap_content" 
-			            android:layout_height="wrap_content"
-			            android:text="@string/info_certificate_situ"/>
-	    	        <Spinner 
-	    	            android:id="@+id/spinner_certification_situ"/>
-	    	    </TableRow>
-	    	    <TableRow >
-	    	        <TextView 
-			    	    android:layout_width="wrap_content" 
-			            android:layout_height="wrap_content"
-			            android:text="@string/code"/>
-	    	        <EditText 
-	    	            android:id="@+id/text_code_secure"
-	    	            android:inputType="text"/>
-	    	        
-	    	        <TextView 
-			    	    android:layout_width="wrap_content" 
-			            android:layout_height="wrap_content"
-			            android:text="@string/info_date_deliver_license"/>
-	    	        <EditText 
-	    	            android:id="@+id/text_date_deliver_license"
-	    	            android:inputType="date"/>
-	    	        
-	    	        <TextView 
-			    	    android:layout_width="wrap_content" 
-			            android:layout_height="wrap_content"
-			            android:text="@string/valid_date"/>
-	    	        <EditText 
-	    	            android:id="@+id/text_date_valid"
-	    	            android:inputType="date"/>
-	    	    </TableRow>
-	    	    <TableRow >
-	    	        <TextView 
-			    	    android:layout_width="wrap_content" 
-			            android:layout_height="wrap_content"
-			            android:text="@string/info_range"/>
-	    	        <EditText 
-	    	            android:id="@+id/text_range"
-	    	            android:inputType="textMultiLine"
-	    	            android:layout_span="5"/>
-	    	    </TableRow>
-	    	    
-	    	</TableLayout>
-	    </LinearLayout>
-		<LinearLayout 
-		    android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-		    android:orientation="vertical">
-		    <TextView 
-	    	    android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
-	            android:text="@string/info_secure_standard"/>
-		    <TableLayout 
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:stretchColumns="1,3,5">
-	    	    <TableRow >
-	    	        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/rank"/>
-			        <EditText 
-			            android:id="@+id/text_f1_secure_rank"
-			            android:inputType="text"/>
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_office_license"/>
-			        <EditText 
-			            android:id="@+id/text_f1_office_license"
-			            android:inputType="text"
-			            android:layout_span="3"/>
-	    	    </TableRow>
-		        <TableRow >
-	    	        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/code"/>
-			        <EditText 
-			            android:id="@+id/text_f1_standard_code"
-			            android:inputType="text"/>
-			        
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_date_deliver_license"/>
-			        <EditText 
-			            android:id="@+id/text_f1_date_deliver"
-			            android:inputType="date"/>
-			        
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/valid_date"/>
-			        <EditText 
-			            android:id="@+id/text_f1_date_valid"
-			            android:inputType="date"/>
-	    	    </TableRow>
-		    </TableLayout>
-		</LinearLayout>
-		
-		<LinearLayout 
-		    android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-		    android:orientation="vertical">
-		    <TextView 
-	    	    android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
-	            android:text="@string/info_filing_chemical"/>
-		    <TableLayout 
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:stretchColumns="1,3,5">
-	    	    <TableRow >
-	    	        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_varity_sort"/>
-			        
-			        <Spinner
-			            android:id="@+id/spinner_f2_varity_sort"/>
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/varity"/>
-			        <EditText 
-			            android:id="@+id/text_f2_varity"
-			            android:inputType="text"/>
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_flow"/>
-			        <EditText 
-			            android:id="@+id/text_f2_flow"
-			            android:inputType="text"/>
-	    	    </TableRow>
-		        <TableRow >
-	    	        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/code"/>
-			        <EditText 
-			            android:id="@+id/text_f2_standard_code"
-			            android:inputType="text"/>
-			        
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_date_deliver_license"/>
-			        <EditText 
-			            android:id="@+id/text_f2_date_deliver"
-			            android:inputType="date"/>
-			        
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/valid_date"/>
-			        <EditText 
-			            android:id="@+id/text_f2_date_valid"
-			            android:inputType="date"/>
-	    	    </TableRow>
-		    </TableLayout>
-		</LinearLayout>
-		
-		<LinearLayout 
-		    android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-		    android:orientation="vertical">
-		    <TextView 
-	    	    android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
-	            android:text="@string/info_filing_danger"/>
-		    <TableLayout 
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:stretchColumns="1,3,5">
-	    	    <TableRow >
-	    	        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/code"/>
-			        <EditText 
-			            android:id="@+id/text_f3_danger_code"
-			            android:inputType="text"/>
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/varity"/>
-			        <EditText 
-			            android:id="@+id/text_f3_danger_varity"
-			            android:inputType="text"/>
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_reserves"/>
-			        <EditText 
-			            android:id="@+id/text_f3_danger_reservers"
-			            android:inputType="text"/>
-	    	    </TableRow>
-		        <TableRow >
-	    	        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/rank"/>
-			        <EditText 
-			            android:id="@+id/text_f3_danger_rank"
-			            android:inputType="text"/>
-			        
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_date_evaluate"/>
-			        <EditText 
-			            android:id="@+id/text_f3_date_evaluate"
-			            android:inputType="date"/>
-			        
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_date_connect"/>
-			        <EditText 
-			            android:id="@+id/text_f3_date_connect"
-			            android:inputType="date"/>
-	    	    </TableRow>
-		    </TableLayout>
-		</LinearLayout>
-		
-		<LinearLayout 
-		    android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-		    android:orientation="vertical">
-		    <TextView 
-	    	    android:layout_width="wrap_content" 
-	            android:layout_height="wrap_content"
-	            android:text="@string/info_filing_emergency"/>
-		    <TableLayout 
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:stretchColumns="1,3,5">
-	    	    <TableRow >
-	    	        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_name_filing"/>
-			        <EditText 
-			            android:id="@+id/text_f4_name_filing"
-			            android:inputType="text"/>
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_num_file"/>
-			        <EditText 
-			            android:id="@+id/text_f4_num_file"
-			            android:inputType="text"/>
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_date_deliver"/>
-			        <EditText 
-			            android:id="@+id/text_f4_date_deliver"
-			            android:inputType="date"/>
-	    	    </TableRow>
-		        <TableRow >
-	    	        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_num_version"/>
-			        <EditText 
-			            android:id="@+id/text_f4_num_version"
-			            android:inputType="text"/>
-			        
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_date_filing"/>
-			        <EditText 
-			            android:id="@+id/text_f4_date_filing"
-			            android:inputType="date"/>
-			        
-			        <TextView 
-		    	    	android:layout_width="wrap_content" 
-		           	 	android:layout_height="wrap_content"
-		            	android:text="@string/info_date_review"/>
-			        <EditText 
-			            android:id="@+id/text_f4_date_review"
-			            android:inputType="date"/>
-	    	    </TableRow>
-		    </TableLayout>
-		</LinearLayout>
-	</LinearLayout>
-</ScrollView>
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        style="@style/infoActionBar"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/infoActionTitleText"
+            android:text="管理操作" />
+
+        <Button
+            android:id="@+id/info_button_save"
+            style="@style/infoActionButtonSave" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/infoModuleTitleText"
+                    android:text="@string/info_license_secure_permission" />
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1,3,5" >
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/type" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/info_column_value_selector" >
+
+                            <Spinner
+                                android:id="@+id/spinner_secure_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_certificate_situ" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/info_column_value_selector" >
+
+                            <Spinner 
+                                android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                                android:id="@+id/spinner_certification_situ" />
+                        </LinearLayout>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/code" />
+
+                        <EditText
+                            android:id="@+id/text_code_secure"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_date_deliver_license" />
+
+                        <EditText
+                            android:id="@+id/text_date_deliver_license"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/valid_date" />
+
+                        <EditText
+                            android:id="@+id/text_date_valid"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_range" />
+
+                        <EditText
+                            android:id="@+id/text_range"
+                            style="@style/infoColumnValue"
+                            android:layout_span="5"
+                            android:inputType="textMultiLine" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/infoModuleTitleText"
+                    android:text="@string/info_secure_standard" />
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1,3,5" >
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/rank" />
+
+                        <EditText
+                            android:id="@+id/text_f1_secure_rank"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_office_license" />
+
+                        <EditText
+                            android:id="@+id/text_f1_office_license"
+                            style="@style/infoColumnValue"
+                            android:layout_span="3"
+                            android:inputType="text" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/code" />
+
+                        <EditText
+                            android:id="@+id/text_f1_standard_code"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_date_deliver_license" />
+
+                        <EditText
+                            android:id="@+id/text_f1_date_deliver"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/valid_date" />
+
+                        <EditText
+                            android:id="@+id/text_f1_date_valid"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/infoModuleTitleText"
+                    android:text="@string/info_filing_chemical" />
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1,3,5" >
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_varity_sort" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/info_column_value_selector" >
+
+                            <Spinner 
+                                android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                                android:id="@+id/spinner_f2_varity_sort" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/varity" />
+
+                        <EditText
+                            android:id="@+id/text_f2_varity"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_flow" />
+
+                        <EditText
+                            android:id="@+id/text_f2_flow"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/code" />
+
+                        <EditText
+                            android:id="@+id/text_f2_standard_code"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_date_deliver_license" />
+
+                        <EditText
+                            android:id="@+id/text_f2_date_deliver"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/valid_date" />
+
+                        <EditText
+                            android:id="@+id/text_f2_date_valid"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/infoModuleTitleText"
+                    android:text="@string/info_filing_danger" />
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1,3,5" >
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/code" />
+
+                        <EditText
+                            android:id="@+id/text_f3_danger_code"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/varity" />
+
+                        <EditText
+                            android:id="@+id/text_f3_danger_varity"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_reserves" />
+
+                        <EditText
+                            android:id="@+id/text_f3_danger_reservers"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/rank" />
+
+                        <EditText
+                            android:id="@+id/text_f3_danger_rank"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_date_evaluate" />
+
+                        <EditText
+                            android:id="@+id/text_f3_date_evaluate"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_date_connect" />
+
+                        <EditText
+                            android:id="@+id/text_f3_date_connect"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/infoModuleTitleText"
+                    android:text="@string/info_filing_emergency" />
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1,3,5" >
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_name_filing" />
+
+                        <EditText
+                            android:id="@+id/text_f4_name_filing"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_num_file" />
+
+                        <EditText
+                            android:id="@+id/text_f4_num_file"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_date_deliver" />
+
+                        <EditText
+                            android:id="@+id/text_f4_date_deliver"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="65dp"
+                        android:minHeight="65dp" >
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_num_version" />
+
+                        <EditText
+                            android:id="@+id/text_f4_num_version"
+                            style="@style/infoColumnValue"
+                            android:inputType="text" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_date_filing" />
+
+                        <EditText
+                            android:id="@+id/text_f4_date_filing"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+
+                        <TextView
+                            style="@style/infoColumnName"
+                            android:text="@string/info_date_review" />
+
+                        <EditText
+                            android:id="@+id/text_f4_date_review"
+                            style="@style/infoColumnValue"
+                            android:inputType="date" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -4,6 +4,7 @@ import com.narkii.security.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -20,11 +21,32 @@ public class InfoDetailFragment extends Fragment{
 	private String[] tags={"info_base_tag","info_secure_tag","info_license_tag","info_record_tag"};
 	private int currentViewId=0;
 	private Bundle param;
+	
+
 	@Override
-	public void onAttach(Activity activity) {
+	public void onDetach() {
 		// TODO Auto-generated method stub
-		super.onAttach(activity);
-		Log.d(TAG, "on attach");
+		super.onDetach();
+		Log.d(TAG, "on detach");
+		for(int i=0;i<tags.length;i++){
+			Fragment fragment=getFragmentManager().findFragmentByTag(tags[i]);
+			if(fragment!=null && fragment.isAdded()){
+				Log.d(TAG, "remove fragment "+tags[i]);
+				getFragmentManager().beginTransaction()
+					.remove(fragment)
+					.commit();
+			}
+		}
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		Log.d(TAG, "on activity result");
+		Fragment fragment=getFragmentManager().findFragmentByTag("info_license_tag");
+		if(fragment!=null)
+			fragment.onActivityResult(requestCode, resultCode, data);
 	}
 
 	@Override

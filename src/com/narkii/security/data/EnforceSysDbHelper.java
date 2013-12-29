@@ -4,7 +4,7 @@ import com.narkii.security.data.EnforceSysContract.Area;
 import com.narkii.security.data.EnforceSysContract.Document;
 import com.narkii.security.data.EnforceSysContract.DocumentType;
 import com.narkii.security.data.EnforceSysContract.Enterprise;
-import com.narkii.security.data.EnforceSysContract.EnterprisePersion;
+import com.narkii.security.data.EnforceSysContract.EnterprisePerson;
 import com.narkii.security.data.EnforceSysContract.EnterpriseType;
 import com.narkii.security.data.EnforceSysContract.Filing;
 import com.narkii.security.data.EnforceSysContract.Member;
@@ -41,13 +41,7 @@ public class EnforceSysDbHelper extends SQLiteOpenHelper{
 			Enterprise.COLUMN_FAX+				TEXT_TYPE+COMMA_SEP+
 			Enterprise.COLUMN_EMAIL+TEXT_TYPE+COMMA_SEP+
 			Enterprise.COLUMN_REMARK+TEXT_TYPE+COMMA_SEP+
-			Enterprise.COLUMN_FK_SAFETY_PERMIT_TYPE+INTEGER_TYPE+COMMA_SEP+
-			Enterprise.COLUMN_SAFETY_PERMIT_NUM+TEXT_TYPE+COMMA_SEP+
-			Enterprise.COLUMN_SCOPE+TEXT_TYPE+COMMA_SEP+
-			Enterprise.COLUMN_ISSUE_DATE+TEXT_TYPE+COMMA_SEP+
-			Enterprise.COLUMN_VALID_DATE+TEXT_TYPE+COMMA_SEP+
-			Enterprise.COLUMN_SITUATION+INTEGER_TYPE+COMMA_SEP+
-			Enterprise.COLUMN_SITUATION_DATE+TEXT_TYPE+COMMA_SEP+
+			
 			Enterprise.COLUMN_DOC_NUM+TEXT_TYPE+COMMA_SEP+
 			Enterprise.COLUMN_USER_TYPE+INTEGER_TYPE+COMMA_SEP+
 			Enterprise.COLUMN_CHARGE+TEXT_TYPE+COMMA_SEP+
@@ -111,7 +105,14 @@ public class EnforceSysDbHelper extends SQLiteOpenHelper{
 					Filing.COLUMN_F4_RELEASE_DATE+TEXT_TYPE+COMMA_SEP+
 					Filing.COLUMN_F4_VERSION_NUM+TEXT_TYPE+COMMA_SEP+
 					Filing.COLUMN_F4_FILING_DATE+TEXT_TYPE+COMMA_SEP+
-					Filing.COLUMN_F4_REVIEW_DATE+TEXT_TYPE+
+					Filing.COLUMN_F4_REVIEW_DATE+TEXT_TYPE+COMMA_SEP+
+					Filing.COLUMN_FK_SAFETY_PERMIT_TYPE+INTEGER_TYPE+COMMA_SEP+
+					Filing.COLUMN_SAFETY_PERMIT_NUM+TEXT_TYPE+COMMA_SEP+
+					Filing.COLUMN_SCOPE+TEXT_TYPE+COMMA_SEP+
+					Filing.COLUMN_ISSUE_DATE+TEXT_TYPE+COMMA_SEP+
+					Filing.COLUMN_VALID_DATE+TEXT_TYPE+COMMA_SEP+
+					Filing.COLUMN_SITUATION+INTEGER_TYPE+COMMA_SEP+
+					Filing.COLUMN_SITUATION_DATE+TEXT_TYPE+
 			")";
 	private static final String SQL_CREATE_MEMBER=
 			"CREATE TABLE "+Member.TABLE_NAME+" ("+
@@ -140,16 +141,16 @@ public class EnforceSysDbHelper extends SQLiteOpenHelper{
 					Permission.COLUMN_TYPE+INTEGER_TYPE+
 			")";
 	private static final String SQL_CREATE_ENTERPRISE_PERSION=
-			"CREATE TABLE "+EnterprisePersion.TABLE_NAME+" ("+
-					EnterprisePersion._ID+PRIMARY_KEY_TYPE+COMMA_SEP+
-					EnterprisePersion.COLUMN_FK_ENTERPRISE_ID+INTEGER_TYPE+COMMA_SEP+
-					EnterprisePersion.COLUMN_NAME+TEXT_TYPE+COMMA_SEP+
-					EnterprisePersion.COLUMN_PHONE+TEXT_TYPE+COMMA_SEP+
-					EnterprisePersion.COLUMN_EMAIL+TEXT_TYPE+COMMA_SEP+
-					EnterprisePersion.COLUMN_SAFE_PAPER+TEXT_TYPE+COMMA_SEP+
-					EnterprisePersion.COLUMN_ISSUE_DATE+TEXT_TYPE+COMMA_SEP+
-					EnterprisePersion.COLUMN_VALID_DATE+TEXT_TYPE+COMMA_SEP+
-					EnterprisePersion.COLUMN_TYPE+TEXT_TYPE+
+			"CREATE TABLE "+EnterprisePerson.TABLE_NAME+" ("+
+					EnterprisePerson._ID+PRIMARY_KEY_TYPE+COMMA_SEP+
+					EnterprisePerson.COLUMN_FK_ENTERPRISE_ID+INTEGER_TYPE+COMMA_SEP+
+					EnterprisePerson.COLUMN_NAME+TEXT_TYPE+COMMA_SEP+
+					EnterprisePerson.COLUMN_PHONE+TEXT_TYPE+COMMA_SEP+
+					EnterprisePerson.COLUMN_EMAIL+TEXT_TYPE+COMMA_SEP+
+					EnterprisePerson.COLUMN_SAFE_PAPER+TEXT_TYPE+COMMA_SEP+
+					EnterprisePerson.COLUMN_ISSUE_DATE+TEXT_TYPE+COMMA_SEP+
+					EnterprisePerson.COLUMN_VALID_DATE+TEXT_TYPE+COMMA_SEP+
+					EnterprisePerson.COLUMN_TYPE+TEXT_TYPE+
 			")";
 /*	private static final String SQL_CREATE_DOCUMENT_CONTENT=
 			"CREATE TABLE "+DocumentContent.TABLE_NAME+" ("+

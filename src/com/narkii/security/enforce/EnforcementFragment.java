@@ -4,9 +4,11 @@ import com.narkii.security.R;
 import com.narkii.security.common.Constants;
 import com.narkii.security.data.DbCursorLoader;
 import com.narkii.security.data.DbOperations;
+import com.narkii.security.data.EnforceSysContract.Area;
 import com.narkii.security.data.EnforceSysContract.Document;
 import com.narkii.security.data.EnforceSysContract.Enterprise;
 import com.narkii.security.data.EnforceSysContract.EnterpriseType;
+import com.narkii.security.data.EnforceSysContract.Filing;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteQueryBuilder;
@@ -34,32 +36,34 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 	private View view;
 	private ListView companyNameList; 
 	private TextView dayText,companyNameText;
-	private Spinner enterpriseTypeSpin, timeSpin;
+	private Spinner enterpriseTypeSpin, timeSpin,areaSpin;
 	private Button searchButton;
-	private SimpleCursorAdapter  enterpriseTypeAdapter,
+	private SimpleCursorAdapter  enterpriseTypeAdapter,areaAdapter,
 			companyNameAdapter;
 	
-	private int mType = 0;// 0复查，1换证
+//	private int mType = 0;// 0复查，1换证
 
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
 		Log.d(TAG, "on option item selected "+item.getItemId());
+		Bundle bundle=new Bundle();
 		switch (item.getItemId()) {
 			case R.id.action_review:// 复查
 				Log.d(TAG, "复查");
-				mType = 0;
+				bundle.putInt("type", 1);
+//				mType = 0;
 				break;
-			case R.id.action_exchange:// 换证
-				Log.d(TAG, "换证");
-				mType = 1;
-				break;
+//			case R.id.action_exchange:// 换证
+//				Log.d(TAG, "换证");
+//				mType = 1;
+//				break;
 			default:
 				break;
 		}
 		getLoaderManager().restartLoader(
-				Constants.LIST_ENFORCE_ENTERPRISE_NAME_ID, null, this);
+				Constants.LIST_ENFORCE_ENTERPRISE_NAME_ID, bundle, this);
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -91,16 +95,19 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 
 		getLoaderManager().initLoader(Constants.SPINNER_ENTERPRISE_TYPE_ID,
 				null, this);
-		
+		Bundle bundle=new Bundle();
+		bundle.putInt("type", 1);
 		getLoaderManager().restartLoader(
-				Constants.LIST_ENFORCE_ENTERPRISE_NAME_ID, null, this);
+				Constants.LIST_ENFORCE_ENTERPRISE_NAME_ID, bundle, this);
+		getLoaderManager().restartLoader(
+				Constants.SPINNER_AREA_ID, null, this);
 	}
 
 	private void initView() {
 		
 		companyNameList = (ListView) view
 				.findViewById(R.id.enforce_list_company_name);
-		
+		areaSpin=(Spinner) view.findViewById(R.id.enforce_spin_company_area);
 		enterpriseTypeSpin = (Spinner) view
 				.findViewById(R.id.enforce_spinner_company_type);
 		
@@ -129,6 +136,13 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		timeSpin.setAdapter(adapter);
 
+		areaAdapter = new SimpleCursorAdapter(getActivity(),
+				android.R.layout.simple_spinner_item, null,
+				new String[] { Area.COLUMN_NAME },
+				new int[] { android.R.id.text1 });
+		areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		areaSpin.setAdapter(areaAdapter);
+		
 		enterpriseTypeAdapter = new SimpleCursorAdapter(getActivity(),
 				android.R.layout.simple_spinner_item, null,
 				new String[] { EnterpriseType.COLUMN_NAME },
@@ -168,7 +182,9 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Bundle bundle=new Bundle();
+				bundle.putInt("type", 2);
 				bundle.putString("name", companyNameText.getText().toString());
+				bundle.putLong("area", areaSpin.getSelectedItemId());
 				bundle.putString("day", dayText.getText().toString());
 				bundle.putLong("enterpriseType", enterpriseTypeSpin.getSelectedItemId());
 				bundle.putInt("dayType", timeSpin.getSelectedItemPosition());
@@ -206,7 +222,7 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 					Cursor cursor=null;
 					DbOperations operations = DbOperations.getInstance(getActivity());
 					//条件查询，同时列出公司列表和默认选中的公司的执法记录
-					if(bundle!=null){
+					if(bundle!=null && bundle.getInt("type")==2){
 						SQLiteQueryBuilder builder =new SQLiteQueryBuilder();
 						String tables=null;
 						boolean mid=false;
@@ -218,8 +234,20 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 							else	builder.appendWhere(" AND ");
 							builder.appendWhere(Document.COLUMN_FK_DOCUMENT_TYPE+"=2 AND "+
 									"date("+Document.COLUMN_MATURITY_DATE+")<=date('now','+"+bundle.getString("day")+" day')");
+						}else if(bundle.getInt("dayType")==1 && !bundle.getString("day").equals("")){
+							//许可到期，连接Filing表
+							tables=Enterprise.TABLE_NAME+" LEFT JOIN "+Filing.TABLE_NAME+
+									" ON ("+Enterprise.TABLE_NAME+"."+Enterprise._ID+"="+Filing.COLUMN_FK_ENTERPRISE_ID+")";
+							if (!mid)
+								mid = true;
+							else
+								builder.appendWhere(" AND ");
+							builder.appendWhere("date("
+//									+ Enterprise.COLUMN_VALID_DATE + ")"
+									+ "<=date('now','+"
+									+ bundle.getString("day") + " day')");
 						}else{
-							//非整改到期
+							//其他查询，只需Enterprise表
 							tables=Enterprise.TABLE_NAME;
 						}
 						
@@ -229,6 +257,12 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 							else	builder.appendWhere(" AND ");
 							builder.appendWhere(Enterprise.COLUMN_NAME+" LIKE '%"+bundle.getString("name")+"%'");
 						}
+						//镇别
+						if(bundle.getLong("area")!=1){
+							if(!mid)	mid=true;
+							else	builder.appendWhere(" AND ");
+							builder.appendWhere(Enterprise.COLUMN_AREA+"="+bundle.getLong("area"));
+						}
 						// 企业类型
 						if (bundle.getLong("enterpriseType") != 1) {
 							if (!mid)		mid = true;
@@ -236,48 +270,52 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 							builder.appendWhere(Enterprise.COLUMN_FK_ENTERPRISE_TYPE
 									+ "=" + bundle.getLong("enterpriseType"));
 						}
-						//许可到期
-						if(bundle.getInt("dayType")==1 && !bundle.getString("day").equals("")){
-							if (!mid)
-								mid = true;
-							else
-								builder.appendWhere(" AND ");
-							builder.appendWhere("date("
-									+ Enterprise.COLUMN_VALID_DATE + ")"
-									+ "<=date('now','+"
-									+ bundle.getString("day") + " day')");
-						}
-						
 						String[] columns= new String[]{Enterprise.TABLE_NAME+"."+Enterprise._ID,Enterprise.COLUMN_NAME};
 						builder.setTables(tables);
 						cursor=builder.query(operations.getDatabase(), columns, null, null, null, null, null);
 						
-					}else{
-						//默认复查、换证查询
-						if (mType == 1) {	//换证
-							String sql = "date(" + Enterprise.COLUMN_VALID_DATE + ")"
-									+ "<=date('now','+3 month')";
-							cursor = operations.query(Enterprise.TABLE_NAME,
-									new String[] { Enterprise._ID,
-											Enterprise.COLUMN_NAME }, sql, null);
-							Log.d(TAG, "database :" + sql);
-							Log.d(TAG, "换证database :" + cursor.getCount());
-						}else{	//复查
-							String tables=Document.TABLE_NAME+" JOIN "+Enterprise.TABLE_NAME+
-									" ON ("+Enterprise.TABLE_NAME+"."+Enterprise._ID+"="+Document.COLUMN_FK_ENTERPRISE_ID+")";
-							String where=Document.COLUMN_FK_DOCUMENT_TYPE+"=2 AND "+
-									"date("+Document.COLUMN_MATURITY_DATE+")<=date('now','+2 day')";
-							String[] columns= new String[]{Enterprise.TABLE_NAME+"."+Enterprise._ID,Enterprise.COLUMN_NAME};
-							cursor=operations.joinQuery(tables,columns, where, null);
-							Log.d(TAG, tables+where);
-							Log.d(TAG, "复查database :" + cursor.getCount());
-						}
+					}else if(bundle!=null && bundle.getInt("type")==1){
+						//复查
+						String tables=Document.TABLE_NAME+" JOIN "+Enterprise.TABLE_NAME+
+								" ON ("+Enterprise.TABLE_NAME+"."+Enterprise._ID+"="+Document.COLUMN_FK_ENTERPRISE_ID+")";
+						String where=Document.COLUMN_FK_DOCUMENT_TYPE+"=2 AND "+
+								"date("+Document.COLUMN_MATURITY_DATE+")<=date('now','+2 day')";
+						String[] columns= new String[]{Enterprise.TABLE_NAME+"."+Enterprise._ID,Enterprise.COLUMN_NAME};
+						cursor=operations.joinQuery(tables,columns, where, null);
+						Log.d(TAG, tables+where);
+						Log.d(TAG, "复查database :" + cursor.getCount());
+					}
+					else{
+						//默认查询 
+//						if (mType == 1) {	//换证
+//							String sql = "date(" + Filing.COLUMN_VALID_DATE + ")"
+//									+ "<=date('now','+3 month')";
+//							cursor = operations.query(Enterprise.TABLE_NAME,
+//									new String[] { Enterprise._ID,
+//											Enterprise.COLUMN_NAME }, sql, null);
+//							Log.d(TAG, "database :" + sql);
+//							Log.d(TAG, "换证database :" + cursor.getCount());
+//						}else{	
+//						}
 					}
 
 					return cursor;
 				}
 			};
-		} 
+		} else if (id == Constants.SPINNER_AREA_ID) {
+			dbLoader = new DbCursorLoader(getActivity()) {
+
+				@Override
+				public Cursor getDbCursor() {
+					// TODO Auto-generated method stub
+					DbOperations operations = DbOperations
+							.getInstance(getActivity());
+					Cursor cursor = operations.query(
+							Area.TABLE_NAME, null, null, null);
+					return cursor;
+				}
+			};
+		}
 		return dbLoader;
 	}
 
@@ -298,7 +336,9 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 //				bundleLog=b;
 //				getLoaderManager().restartLoader(Constants.LIST_ENFORCE_RECORD_ID, b, EnforcementFragment.this);
 //			}
-		} 
+		} else if(id==Constants.SPINNER_AREA_ID){
+			areaAdapter.swapCursor(cursor);
+		}
 	}
 
 	@Override
@@ -309,7 +349,9 @@ public class EnforcementFragment extends Fragment implements LoaderCallbacks<Cur
 			enterpriseTypeAdapter.swapCursor(null);
 		} else if (id == Constants.LIST_ENFORCE_ENTERPRISE_NAME_ID) {
 			companyNameAdapter.swapCursor(null);
-		} 
+		}  else if(id==Constants.SPINNER_AREA_ID){
+			areaAdapter.swapCursor(null);
+		}
 	}
 
 	

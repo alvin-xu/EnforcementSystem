@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/paper_rectify_attach"
+    android:layout_width="930dp"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linear_paper_content"
+        android:layout_width="800dp"
+        android:layout_height="1130dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#FFFFFF"
+        android:minHeight="200dp"
+        android:orientation="vertical" >
+
+        <com.narkii.security.common.SongTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="30dp"
+            android:text="续页" />
+
+        <ImageView style="@style/paperDivider" />
+
+        <ImageView style="@style/paperDivider" />
+
+        <com.narkii.security.common.LinedEditText
+            android:id="@+id/inspect_situ"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:paddingTop="20dp"
+            android:lineSpacingExtra="20dp"
+            android:lines="5" />
+
+        <LinearLayout
+            style="@style/paperLine"
+            android:orientation="horizontal" >
+
+            <com.narkii.security.common.SongTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:text="检查人员签名：" />
+
+            <EditText
+                android:id="@+id/inspect_sign1"
+                style="@style/paperTextValue"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+
+            <com.narkii.security.common.SongTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="、" />
+
+            <EditText
+                android:id="@+id/inspect_sign2"
+                style="@style/paperTextValue"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/paperLine"
+            android:orientation="horizontal" >
+
+            <com.narkii.security.common.SongTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:text="被检查单位现场负责人（签名）：" />
+
+            <EditText
+                android:id="@+id/inspect_responser_sign"
+                style="@style/paperTextValue"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_gravity="right"
+            android:layout_margin="0dp"
+            android:padding="0dp" >
+
+            <ImageView
+                android:id="@+id/paper_seal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_vertical|center_horizontal"
+                android:src="@drawable/paper_seal"
+                android:visibility="invisible" />
+
+            <com.narkii.security.common.SongTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="安全生产监督管理部门（公章）" />
+
+            <EditText
+                android:id="@+id/inspect_date_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@null"
+                android:editable="false"
+                android:text="   年        月        日   " />
+        </FrameLayout>
+
+        <ImageView style="@style/paperDivider" />
+
+        <com.narkii.security.common.SongTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="40dp"
+            android:text="共  页   第  页" />
+    </LinearLayout>
+
+</LinearLayout>

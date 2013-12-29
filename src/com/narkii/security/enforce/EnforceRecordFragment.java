@@ -128,21 +128,23 @@ public class EnforceRecordFragment extends Fragment implements LoaderCallbacks<C
 				switch (position) {
 					case 0:
 						fragment=new InspectFragment();
-						fragment.setArguments(bundleLog);
-						getFragmentManager().beginTransaction()
-							.hide(getFragmentManager().findFragmentByTag("enforce_record_tag"))
-							.replace(R.id.enforce_record, fragment, "enforce_paper_tag")
-							.addToBackStack(null)
-							.commit();
 						break;
 					case 1:
+						fragment=new RectifyFragment();
 						break;
 					case 2:
+						fragment=new ReviewFragment();
 						break;
 					default:
 						break;
 				}
-				
+				if(fragment==null) return;
+				fragment.setArguments(bundleLog);
+				getFragmentManager().beginTransaction()
+					.hide(getFragmentManager().findFragmentByTag("enforce_record_tag"))
+					.replace(R.id.enforce_record, fragment, "enforce_paper_tag")
+					.addToBackStack(null)
+					.commit();
 				isAddPaper=false;
 			}
 

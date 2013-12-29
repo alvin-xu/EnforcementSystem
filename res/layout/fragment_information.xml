@@ -20,13 +20,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text" />
+		 <TextView
+            style="@style/sideTextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/company_area" />
 
+        <Spinner
+            android:id="@+id/info_spin_company_area"
+            style="@style/sideSpinLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
         <TextView
             style="@style/sideTextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/company_type" />
-
+		
         <Spinner
             android:id="@+id/info_spin_company_type"
             style="@style/sideSpinLarge"
@@ -61,7 +72,7 @@
             style="@style/sideTextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/time" />
+            android:text="@string/time_limit" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -103,6 +114,7 @@
 
             <Button
                 android:id="@+id/info_button_delete"
+                android:clickable="false"
                 style="@style/infoActionButtonDelete" />
 
             <Button
